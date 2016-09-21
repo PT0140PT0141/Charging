@@ -757,8 +757,8 @@ module Charging_TCs {
 //                // Postamble
 //                f_Charging_Postambule();
 //            } // End of TC TC_CR_FE_BV_15
-//        } // End of group Valid_Behaviour
-//
+        } // End of group Valid_Behaviour
+
         /**
          * @desc    Group of the TCs based on TPs described in clause A.2.2 BI test purposes: No BI test purposes are applicable for this TP group
          * @remark  0 TCs
