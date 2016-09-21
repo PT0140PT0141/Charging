@@ -17,9 +17,9 @@ module Charging_Functions {
      * @see     A.2 Data specifications
      */
     import from EfcAutonomousContextData language "ASN.1:1997" all;
-	import from EfcDsrcApplication language "ASN.1:1997" all;
-	
-	// LibEfc_Common
+    import from EfcDsrcApplication language "ASN.1:1997" all;
+    
+    // LibEfc_Common
     /**
      * @desc    TTCN-3 does not support ASN.1 parameterization (ETSI ES 201 873-7 V4.5.1 Clause 10)
      *          Common_Parameterised_Asn1_Data TTCN-3 module is a workaround
@@ -162,11 +162,6 @@ module Charging_Functions {
                     // Skip this item
                     continue;
                 }
-                // Process item
-                if (ispresent(p_chargeObjectsList[idx].vehicleDescription.vehicleLPNr) == false) {
-                    // Skip this item
-                    continue;
-                }
                 // vehicleLPNr was found
                 return true; // Success
             } // 'for' loop
@@ -207,9 +202,9 @@ module Charging_Functions {
 
             // Parse UsageStatement list
             for (var integer idx := 0; idx < sizeof(p_usageStatementList); idx := idx + 1) {
-            	if (ischosen(p_usageStatementList[idx].usageStatement) == false) {
-            		continue;
-            	}
+                if (ischosen(p_usageStatementList[idx].usageStatement) == false) {
+                    continue;
+                }
                 if (ispresent(p_usageStatementList[idx].usageStatement.usageStatementId) == false) {
                     return false; // Error
                 }
@@ -284,18 +279,18 @@ module Charging_Functions {
         function f_validate_AddToAccount_Transitions(AccountStatus accountS1, AccountStatus accountS2) runs on EutComp
         return boolean {
 
-            if ((accountS1 == SetMMIRq_nok_) and (accountS2 == SetMMIRq_ok_)) {
+            if ((accountS1 == AccountStatus_negative_) and (accountS2 == AccountStatus_ok_)) {
                 log ("3 -> [3|2|1] transition not verified");
                 return false;
-            } else if ((accountS1 == SetMMIRq.empty)  and (accountS2 != SetMMIRq.low)) {
+            } else if ((accountS1 == AccountStatus_empty_)  and (accountS2 != AccountStatus_low_)) {
                 log ("2 -> 1 transition not verified");
                 return false;
-            } else if (accountS1 == SetMMIRq.low) {
-                if ((accountS1 == SetMMIRq.empty) or (accountS1 == SetMMIRq_nok_)) {
+            } else if (accountS1 == AccountStatus_low_) {
+                if ((accountS2 == AccountStatus_empty_) or (accountS2 == AccountStatus_negative_)) {
                     log ("1 -> [0|1] transition not verified");
                     return false;
                 }
-            } else if ((accountS1 == SetMMIRq_ok_) and (accountS2 != SetMMIRq_ok_)) {
+            } else if ((accountS1 == AccountStatus_ok_) and (accountS2 != AccountStatus_ok_)) {
                 log ("0 -> 0 transition not verified");
                 return false;
             }

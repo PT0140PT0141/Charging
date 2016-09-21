@@ -67,32 +67,32 @@ module Charging_TE {
              * @remark  [17575-1:2016], Clause 6.3.3  reportPeriod
              */
             execute(TC_CR_FE_BV_10(), PX_GUARD);
-            /**
-             * @desc    TC_CR_FE_BV_11: Verify that begin period is lower than end period in Aggregated Fee
-             * @remark  [17575-1:2016], Clause 6.5.4 aggregatedFee
-             */
-            execute(TC_CR_FE_BV_11(), PX_GUARD);
-            /**
-             * @desc    TC_CR_FE_BV_12: Verify that begin period is lower than end period in Aggregated Single Tariff Class Session
-             * @remark  [17575-1:2016], Clause 6.5.5 aggregatedSingleTariffClassSession
-             */
-            execute(TC_CR_FE_BV_12(), PX_GUARD);
-            /**
-             * @desc    TC_CR_FE_BV_13: Verify that reported Tariff Class is defined in Context Data (Aggregated Single Class Tariff Session)
-             * @remark  [17575-1:2016], Clause 6.5.6 tariffClass
-             */
-            execute(TC_CR_FE_BV_13(), PX_GUARD);
-            /**
-             * @desc    TC_CR_FE_BV_14: Verify that reported Tariff Class is defined in Context Data (List of Charged Objects)
-             * @remark  [17575-1:2016], Clause 6.5.7  listOfChargeObjects and DetectedChargeObject
-             */
-            execute(TC_CR_FE_BV_14(), PX_GUARD);
-            /**
-             * @desc    TC_CR_FE_BV_15: Verify that reported Tariff Class is defined in Context Data (List of Raw Usage Data)
-             * @remark  [17575-1:2016], Clause 6.5.9 ListOfRawUsageData
-             */
-            execute(TC_CR_FE_BV_15(), PX_GUARD);
-
+//            /**
+//             * @desc    TC_CR_FE_BV_11: Verify that begin period is lower than end period in Aggregated Fee
+//             * @remark  [17575-1:2016], Clause 6.5.4 aggregatedFee
+//             */
+//            execute(TC_CR_FE_BV_11(), PX_GUARD);
+//            /**
+//             * @desc    TC_CR_FE_BV_12: Verify that begin period is lower than end period in Aggregated Single Tariff Class Session
+//             * @remark  [17575-1:2016], Clause 6.5.5 aggregatedSingleTariffClassSession
+//             */
+//            execute(TC_CR_FE_BV_12(), PX_GUARD);
+//            /**
+//             * @desc    TC_CR_FE_BV_13: Verify that reported Tariff Class is defined in Context Data (Aggregated Single Class Tariff Session)
+//             * @remark  [17575-1:2016], Clause 6.5.6 tariffClass
+//             */
+//            execute(TC_CR_FE_BV_13(), PX_GUARD);
+//            /**
+//             * @desc    TC_CR_FE_BV_14: Verify that reported Tariff Class is defined in Context Data (List of Charged Objects)
+//             * @remark  [17575-1:2016], Clause 6.5.7  listOfChargeObjects and DetectedChargeObject
+//             */
+//            execute(TC_CR_FE_BV_14(), PX_GUARD);
+//            /**
+//             * @desc    TC_CR_FE_BV_15: Verify that reported Tariff Class is defined in Context Data (List of Raw Usage Data)
+//             * @remark  [17575-1:2016], Clause 6.5.9 ListOfRawUsageData
+//             */
+//            execute(TC_CR_FE_BV_15(), PX_GUARD);
+//
     /**
      * @desc    These Test Purposes apply to Back End feedback sent in Charge Report Response as claimed in [17575-1:2016] clause B.2.ChargeReportResponse, clause B.3.2, clause B.3.4
      * Test subgroup objective:
@@ -283,11 +283,11 @@ module Charging_TE {
      * - to verify structure of sent ChargeReportResponse,and allowed values of all data elements in Charge Report Response
      * @remark  2 TCs
      */
-            /**
-             * @desc    TC_CRR_BE_BV_01: Verify the usage of communication services
-             * @remark  [17575-1:2016]
-             */
-            execute(TC_CRR_BE_BV_01(), PX_GUARD);
+//            /**
+//             * @desc    TC_CRR_BE_BV_01: Verify the usage of communication services
+//             * @remark  [17575-1:2016]
+//             */
+//            execute(TC_CRR_BE_BV_01(), PX_GUARD);
             /**
              * @desc    TC_CRR_BE_BV_02: Verify that DUT confirms reception of Charge Report
              * @remark  [17575-1:2016], Clause 5.3 Charge report response

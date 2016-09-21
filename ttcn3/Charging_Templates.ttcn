@@ -352,6 +352,20 @@ module Charging_Templates {
             mileage := ?,
             accountStatus := p_accountStatus
         } // End of template mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage
+        
+            /**
+             * @desc    This is the minimal form of awaited ChargeReport message, all optional fields are ignored
+             * @see     [TS 17575-3], 7.2.1 ChargeReport
+             */
+            template ChargeReport mw_chargeReport_chargeReportCounter modifies mw_chargeReport_any:= {
+                chargeReportCounter := ?
+            } // End of template mw_chargeReport_chargeReportCounter
+        
+        
+        
+        
+        
+        
     } // End of group ChargeReport_Templates
 
     /**
