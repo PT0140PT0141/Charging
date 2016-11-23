@@ -30,16 +30,16 @@ module Charging_Pixits {
     import from Common_Parameterised_Asn1_Data all;
     
     /**
-     * @desc    Transaction counter value set for response
+     * @desc    ChargeReport counter value set for response
      */
-    modulepar integer PX_TRANSACTION_COUNTER_RESPONSE := 2;
+    modulepar integer PX_CHARGE_REPORT_COUNTER_RESPONSE := 2;
     /**
      * @desc    Number of test body sequence to execute
      */
     modulepar float PX_TEST_BODY_DURATION := 30.0;
     /**
      * @desc    Threshold for on-board account is set to THR
-     * @see     m_chargeReportResponse_transactionCounter template
+     * @see     m_chargeReportResponse_chargeReportCounter template
      */
     modulepar Int2 PX_ACCOUNT_BASED_THR := 15;
     /**

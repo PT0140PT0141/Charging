@@ -73,6 +73,15 @@ module Charging_Templates {
             chargeReportCounter := PIC_chargeReportCounter,
             mileage := PIC_mileage
         } // End of template m_chargeReportContent_accountStatus_chargeReportCounter_mileage_requested
+        /**
+         * @desc    ChargeReportContent template with chargeReportFinalRecipient plus accountStatus, chargeReportCounter and mileage requested in ChargeReport messages
+         * @see     [17575-3:2016], Clause 8.3.5.2.1 Data type ChargeReportContent
+         * @remark  All other ChargeReportContent template shall modify this one. use PICS to initialize properly this 
+         */
+        template (value) ChargeReportContent m_chargeReportContent_chargeReportFinalRecipient
+        modifies m_chargeReportContent_accountStatus_chargeReportCounter_mileage_requested := {
+            chargeReportFinalRecipient := true
+        } // End of template m_chargeReportContent_chargeReportFinalRecipient
 
         /**
          * @desc    UsageStatementContent with listOfChargeObjects requested
@@ -178,6 +187,14 @@ module Charging_Templates {
             chargeReportContent := m_chargeReportContent_accountStatus_chargeReportCounter_mileage_requested
         } // End of template m_chargeReportConfiguration_accountStatus_chargeReportCounter_mileage_requested
         /**
+         * @desc    ChargeReportConfiguration template with chargeReportFinalRecipient plus accountStatus, chargeReportCounter and mileage requested in ChargeReport messages
+         * @see     [17575-3:2016], Clause 8.3.5.2.1 Data type ChargeReportContent
+         */
+        template (value) ChargeReportConfiguration m_chargeReportConfiguration_chargeReportFinalRecipient
+        modifies m_chargeReportConfiguration_default := {
+            chargeReportContent := m_chargeReportContent_chargeReportFinalRecipient
+        } // End of template m_chargeReportConfiguration_chargeReportFinalRecipient
+        /**
          * @desc    UsageStatementContent with listOfChargeObjects requested
          * @see     [17575-3:2016], Clause 8.3.5.2.2 Data type UsageStatementContent
          */
@@ -239,7 +256,7 @@ module Charging_Templates {
         /**
          * @desc    ContextData template with chargeReportCounter requested in ChargeReport messages
          */
-        template (value) Iso17575_3AduBody m_ContextData_default_chargeReportCounter_requested
+        template (value) Iso17575_3AduBody m_ContextData_chargeReportCounter_requested
         modifies m_contextData_default := {
             chargeReportConfiguration := m_optionally_Signed_Unsecured<ChargeReportConfigurations>({ m_chargeReportConfiguration_chargeReportCounter_requested })
         } //End of template m_ContextData_chargeReportCounter_requested
@@ -295,10 +312,17 @@ module Charging_Templates {
         /**
          * @desc    ContextData template with chargeReportCounter, mileage and accountStatus requested in ChargeReport messages
          */
-        template (value) Iso17575_3AduBody m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested
+        template (value) Iso17575_3AduBody m_ContextData_accountStatus_chargeReportCounter_mileage_requested
         modifies m_contextData_default := {
             chargeReportConfiguration :=  m_optionally_Signed_Unsecured<ChargeReportConfigurations>({ m_chargeReportConfiguration_accountStatus_chargeReportCounter_mileage_requested })
-        } //End of template m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested
+        } //End of template m_ContextData_accountStatus_chargeReportCounter_mileage_requested
+        /**
+         * @desc    ContextData template with chargeReportFinalRecipient plus chargeReportCounter, mileage and accountStatus requested in ChargeReport messages
+         */
+        template (value) Iso17575_3AduBody m_ContextData_chargeReportFinalRecipient
+        modifies m_contextData_default := {
+            chargeReportConfiguration :=  m_optionally_Signed_Unsecured<ChargeReportConfigurations>({ m_chargeReportConfiguration_chargeReportFinalRecipient })
+        } //End of template m_ContextData_chargeReportFinalRecipient
     } // End of group Charging_ContextData
 
     /**
@@ -319,12 +343,12 @@ module Charging_Templates {
          * @param   p_dist Mileage is about to roll-over, e.g. its value is close to this specified value
          * @see     [16410-1:2016], Clause C.1.1 General Structure of Charge Report
          */
-        template ChargeReport mw_chargeReport_mileageRollOver(in integer p_dist)
+        template ChargeReport mw_chargeReport_mileageOverflow(in integer p_dist)
         modifies mw_chargeReport_tableC1 := {
             mileage := {
                 dist := p_dist
             }
-        } // End of template mw_chargeReport_obeId
+        } // End of template mw_chargeReport_mileageOverflow
         /**
          * @desc    TC_CR_FE_BV_07: Verify that OBE ID is fixed
          * @param p_obeId
@@ -353,14 +377,21 @@ module Charging_Templates {
             accountStatus := p_accountStatus
         } // End of template mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage
         
-            /**
-             * @desc    This is the minimal form of awaited ChargeReport message, all optional fields are ignored
-             * @see     [TS 17575-3], 7.2.1 ChargeReport
-             */
-            template ChargeReport mw_chargeReport_chargeReportCounter modifies mw_chargeReport_any:= {
-                chargeReportCounter := ?
-            } // End of template mw_chargeReport_chargeReportCounter
+        /**
+         * @desc    This is the minimal form of awaited ChargeReport message, all optional fields are ignored
+         * @see     [TS 17575-3], 7.2.1 ChargeReport
+         */
+        template ChargeReport mw_chargeReport_chargeReportCounter modifies mw_chargeReport_any:= {
+            chargeReportCounter := ?
+        } // End of template mw_chargeReport_chargeReportCounter
         
+        /**
+         * @desc    This is the minimal form of awaited ChargeReport message, all optional fields are ignored
+         * @see     [TS 17575-3], 7.2.1 ChargeReport
+         */
+        template ChargeReport mw_chargeReport_chargeReportFinalRecipient modifies mw_chargeReport_any:= {
+			chargeReportFinalRecipient := ?
+        } // End of template mw_chargeReport_chargeReportFinalRecipient
         
         
         
@@ -407,14 +438,14 @@ module Charging_Templates {
          * @param   p_chargeReportCounter value to use for DataReceive.chargeReportCounter field
          * @remark  All other ChargeReport template shall modify this one
          */
-        template (value) ChargeReportResponse m_chargeReportResponse_transactionCounter(in integer p_chargeReportCounter) 
+        template (value) ChargeReportResponse m_chargeReportResponse_chargeReportCounter(in integer p_chargeReportCounter) 
         modifies m_chargeReportResponse_default := {
             chargeReportRespSender := {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter)
-        } // End of template chargeReportResponse_mileage
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter)
+        } // End of template m_chargeReportResponse_chargeReportCounter
         /**
          * @desc    This is the ChargeReportResponse message sent to verify that OBE Status For Driver is set properly having received Charge Report Response
          * @see     [17575-1:2016]: Context data
@@ -427,7 +458,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := p_obeStatusForDriver
         } // End of template chargeReportResponse_mileage
         /**
@@ -442,7 +473,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 setAccount := {
@@ -469,7 +500,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 setAccount := {
@@ -498,7 +529,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 setAccount := {
@@ -524,7 +555,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 setAccount := {
@@ -551,7 +582,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 setAccount := {
@@ -575,7 +606,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 addToAccount := {
@@ -602,7 +633,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 addToAccount := {
@@ -629,7 +660,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 addToAccount := {
@@ -653,7 +684,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 reloadAccount := {
@@ -677,7 +708,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 reloadAccount := {
@@ -701,7 +732,7 @@ module Charging_Templates {
                 countryCode := PX_ANY_EFC_OPERATOR,
                 providerIdentifier := PX_ANY_RECIPIENT
             },
-            dataReceived := m_DataReceived_transactionCounter(p_chargeReportCounter),
+            dataReceived := m_DataReceived_chargeReportCounter(p_chargeReportCounter),
             obeStatusForDriver := omit,
             accountUpdate := {
                 reloadAccount := {
@@ -749,14 +780,14 @@ module Charging_Templates {
          */
         template (value) DataReceived m_DataReceived_mileage(in Distance p_distance) := {
             mileage := p_distance
-        } // End of template m_DataReceived_timeOfReport
+        } // End of template m_DataReceived_mileage
         /**
          * @desc    This template describes the DataReceived message with the choosen chargeReportCounter field
          * @see     [17575-1:2016]: Charging - Clause 6.5.12
          * @param   p_chargeReportCounter chargeReportCounter value
          */
-        template (value) DataReceived m_DataReceived_transactionCounter(in integer p_chargeReportCounter) := {
+        template (value) DataReceived m_DataReceived_chargeReportCounter(in integer p_chargeReportCounter) := {
             chargeReportCounter := p_chargeReportCounter
-        } // End of template m_DataReceived_timeOfReport
+        } // End of template m_DataReceived_chargeReportCounter
     } // End of group DataReceived_Templates
 } with { encode "BER:1997" } // End of module Charging_Templates

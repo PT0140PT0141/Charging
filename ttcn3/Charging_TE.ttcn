@@ -92,6 +92,18 @@ module Charging_TE {
 //             * @remark  [17575-1:2016], Clause 6.5.9 ListOfRawUsageData
 //             */
 //            execute(TC_CR_FE_BV_15(), PX_GUARD);
+            /**
+             * @desc    TC_CR_FE_BV_16:Verify that begin period is lower than end period in Report Period
+             * @remark  [17575-1:2016], Clause 7.3.2 reportPeriod
+             */
+            execute(TC_CR_FE_BV_16(), PX_GUARD);
+            /**
+             * @desc    TC_CR_FE_BV_17: Verify that Authenticated Charge Report is used
+             * @remark  [17575-1:2016] Clause 7.2.1 ChargeReport 
+             * @remark  [17575-1:2016] Clause 7.4.1 AuthenticatedChargeReport
+             */
+            execute(TC_CR_FE_BV_17(), PX_GUARD);
+            
 //
     /**
      * @desc    These Test Purposes apply to Back End feedback sent in Charge Report Response as claimed in [17575-1:2016] clause B.2.ChargeReportResponse, clause B.3.2, clause B.3.4

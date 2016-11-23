@@ -334,7 +334,7 @@ module Charging_Functions {
             /**
              * @desc    Set the field mileage.dist to the value 16777215
              */
-            const ParameterList mileageRollOver := {
+            const ParameterList mileageOverflow := {
                 "ChargeReport.mileage.dist", "16777215",
                 "", ""
             };

@@ -1,8 +1,8 @@
 /**
  * @author  PT28/PT0141 
  * @desc    This module provides test cases based on Charging TPs
- * @see     [16497-2:2016]: Test suite structure and test purpose
- * @see     [16497-2:2016], Clause 5.3.2 TC namimg conventions
+ * @see     [16407-1:2016]: Test suite structure and test purpose
+ * @see     [16407-1:2016], Clause 5.3.2 TP namimg conventions
  * @version $id$
  */
 module Charging_TCs {
@@ -32,21 +32,20 @@ module Charging_TCs {
     import from Charging_Templates all;
 
     /**
-     * @desc    These Test Purposes apply to  Communication services support as claimed in [17575-1:2016], Clause 1, and data elements in Charge Report as claimed in [17575-1:2016], Clause B.2/ChargeReport, clause B.3.1, clause B3.3
+     * @desc    These Test Purposes apply to data elements in Charge Report as claimed in ISO 17575-1:2016
      * @remark  15 TCs
      */
     group Charge_Report {
         /**
-         * @desc    Group of the TCs based on TPs described in clause A.3.1 BV test purposes: Verify the usage of communication services
+         * @desc    Group of the TCs based on TPs described in clause A.3.1 BV test purposes
          * Test subgroup objective:
-         * - to test the usage of communication services;
-         * - to test the behaviour of the DUT with respect to data elements contained in Charge Report.
+         * - to  test the behaviour of the DUT with respect to data elements contained in Charge Report.
          */
         group Valid_Behaviour {
 
             /**
-             * @desc    TC_CR_FE_BV_01: Verify that protocol version is ISO 17575-3
-             * @remark  [17575-1:2016] (without any specification, let check for chargeReportCounter)
+             * @desc    TC_CR_FE_BV_01: Protocol version handling
+             * @remark  [17575-1:2016] Clause 7.8.1 protocolVersion
              */
             testcase TC_CR_FE_BV_01() runs on EutComp system TestAdapter {
                 
@@ -76,7 +75,7 @@ module Charging_TCs {
                         t_ac.stop;
                         
                         // Step2: Send ChargeReportResponse
-                        pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter));
+                        pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter));
                         // Step4: Set verdict pass
                         setverdict(pass);
                     } // mw_chargeReport_any
@@ -89,7 +88,7 @@ module Charging_TCs {
     
             /**
              * @desc    TC_CR_FE_BV_02: Verify that Time of Report is according to the local time
-             * @remark  [17575-1:2016], Clause 6.3.2 timeOfReport
+             * @remark  [17575-1:2016], Clause 7.3.1 timeOfReport
              */
             testcase TC_CR_FE_BV_02() runs on EutComp system TestAdapter {
                 
@@ -126,7 +125,7 @@ module Charging_TCs {
                             setverdict(pass);
                         }
                         // Step6: Send ChargeReportResponse
-                        pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter));
+                        pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter));
                     } // pco.receive(mw_chargeReport_chargeReportCounter)
                 } // End of alt statement
                 // Test body done
@@ -136,18 +135,17 @@ module Charging_TCs {
             } // End of TC TC_CR_FE_BV_02
     
             /**
-             * @desc    TC_CR_FE_BV_03: Verify that Transaction Counter is incremented
-             * @remark  [17575-1:2016], Clause 6.3.5 chargeReportCounter
+             * @desc    TC_CR_FE_BV_03: Verify that Charge Report Counter is incremented
+             * @remark  [17575-1:2016], Clause 7.3.4 chargeReportCounter
              */
-            testcase TC_CR_FE_BV_03() runs on EutComp system TestAdapter 
-            {
+            testcase TC_CR_FE_BV_03() runs on EutComp system TestAdapter {
                 var ChargeReport chargeReport1 := null; // Variable used to store the received message on Step1
                 var ChargeReport chargeReport2 := null; // Variable used to store the received message on Step5
     
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data with Charge Report Configuration requesting chargeReportCounter to be present
-                f_SendContextData(m_ContextData_default_chargeReportCounter_requested);
+                f_SendContextData(m_ContextData_chargeReportCounter_requested);
                 // No authentication is required
                 // Preamble done
     
@@ -159,7 +157,7 @@ module Charging_TCs {
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse
-                        pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                        pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                         // Step5 wait for new ChargeReport message
                         t_ac.start;
                         alt {
@@ -175,7 +173,7 @@ module Charging_TCs {
                                     // Step8: Set verdict pass
                                     setverdict(pass);
                                     // Step9: Send ChargeReportResponse
-                                    pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                                    pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                                 }
                             } // Second pco.receive(mw_chargeReport_tableC1) -> v2
                         } // alt/Step5
@@ -188,17 +186,16 @@ module Charging_TCs {
             } // End of TC TC_CR_FE_BV_03
     
             /**
-             * @desc    TC_CR_FE_BV_04: Transaction Counter Overflow
-             * @remark  [17575-1:2016], Clause 6.3.5 chargeReportCounter
+             * @desc    TC_CR_FE_BV_04: Charge Report Counter Overflow
+             * @remark  [17575-1:2016], Clause 7.3.4 chargeReportCounter
              */
-            testcase TC_CR_FE_BV_04() runs on EutComp system TestAdapter 
-            {
+            testcase TC_CR_FE_BV_04() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
     
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data with Charge Report Configuration requesting chargeReportCounter to be present
-                f_SendContextData(m_ContextData_default_chargeReportCounter_requested);
+                f_SendContextData(m_ContextData_chargeReportCounter_requested);
                 // No authentication is required
                 f_userActions(cmdSet, transactionCounter);
                 // Preamble done
@@ -211,7 +208,7 @@ module Charging_TCs {
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse
-                        pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                        pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                         // Step5 wait for new ChargeReport message
                         t_ac.start;
                         alt {
@@ -227,7 +224,7 @@ module Charging_TCs {
                                     // Step8: Set verdict pass
                                     setverdict(pass);
                                     // Step9: Send ChargeReportResponse
-                                    pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                                    pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                                 }
                             } // Second pco.receive(mw_chargeReport_tableC1) -> v1
                         } // alt/Step5
@@ -240,11 +237,10 @@ module Charging_TCs {
             } // End of TC TC_CR_FE_BV_04
     
             /**
-             * @desc    TC_CR_FE_BV_05: Verify that mileage is not decreasing within one contract
-             * @remark  [17575-1:2016], Clause 6.3.6 mileage
+             * @desc    TC_CR_FE_BV_05: Verify that mileage is not decreasing
+             * @remark  [17575-1:2016], Clause 7.3.5 mileage
              */
-            testcase TC_CR_FE_BV_05() runs on EutComp system TestAdapter 
-            {
+            testcase TC_CR_FE_BV_05() runs on EutComp system TestAdapter {
                 var ChargeReport chargeReport1 := null; // Variable used to store the received message on Step1
                 var ChargeReport chargeReport2 := null; // Variable used to store the received message on Step5
     
@@ -264,7 +260,7 @@ module Charging_TCs {
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse
-                        pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                        pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                         f_userActions(cmdInc, incMileageDist);
                         // Step5 wait for new ChargeReport message
                         t_ac.start;
@@ -281,7 +277,7 @@ module Charging_TCs {
                                 } else {
                                     setverdict(pass);
                                     // Step9: Send ChargeReportResponse
-                                    pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                                    pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                                 }
                             } // Second pco.receive(mw_chargeReport_tableC1) -> v1
                         } // alt/Step5
@@ -294,11 +290,10 @@ module Charging_TCs {
             } // End of TC TC_CR_FE_BV_05
     
             /**
-             * @desc    TC_CR_FE_BV_06: Verify that mileage rolls over
-             * @remark  [17575-1:2016], Clause 6.3.6 mileage
+             * @desc    TC_CR_FE_BV_06: Verify that mileage counter restarts from zero in case of overflow
+             * @remark  [17575-1:2016], Clause 7.3.5 mileage
              */
-            testcase TC_CR_FE_BV_06() runs on EutComp system TestAdapter 
-            {
+            testcase TC_CR_FE_BV_06() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message on Step1
     
                 // Preamble
@@ -306,7 +301,7 @@ module Charging_TCs {
                 // Front End received already Context Data with Charge Report Configuration requesting mileage to be present
                 f_SendContextData(m_ContextData_default_mileage_requested);
                 // No authentication is required
-                f_userActions(cmdSet, mileageRollOver); // Mileage is about to roll-over, e.g. its value is close to 16777215
+                f_userActions(cmdSet, mileageOverflow); // Mileage is about to overflow, e.g. its value is close to 16777215
                 // Preamble done
                 f_userActions(cmdSet, contract1);
     
@@ -314,11 +309,11 @@ module Charging_TCs {
                 t_ac.start;
                 // Step1: wait for ChargeReport message
                 alt {
-                    [] pco.receive(mw_chargeReport_mileageRollOver(16777215)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_mileageOverflow(16777215)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse
-                        pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                        pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                         // Step5: Mileage has changed enough to perform roll-over
                         f_userActions(cmdInc, incMileageDist);
                         // Step6 wait for new ChargeReport message
@@ -338,11 +333,11 @@ module Charging_TCs {
                                     // Step9: Set verdict pass
                                     setverdict(pass);
                                     // Step10: Send ChargeReportResponse
-                                    pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                                    pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                                 }
                             } // Second pco.receive(mw_chargeReport_tableC1)
                         } // alt/Step5
-                    } // pco.receive(mw_chargeReport_mileageRollOver(16777215))
+                    } // pco.receive(mw_chargeReport_mileageOverflow(16777215))
                 } // alt/Step1
                 // Test body done
     
@@ -352,10 +347,9 @@ module Charging_TCs {
     
             /**
              * @desc    TC_CR_FE_BV_07: Verify that OBE ID is fixed
-             * @remark  [17575-1:2016], Clause 6.4.1 obeId
+             * @remark  [17575-1:2016], Clause 7.5.1 obeId
              */
-            testcase TC_CR_FE_BV_07() runs on EutComp system TestAdapter 
-            {
+            testcase TC_CR_FE_BV_07() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message on Step1
                 timer t_runningDuration := 30.0; // Used to repeat test body sequence during 30.0 seconds
                 
@@ -375,7 +369,7 @@ module Charging_TCs {
                         // Stop timer
                         t_ac.stop;
                         // StepN-1: Send ChargeReportResponse
-                        pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                        pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                         t_ac.start;
                         alt {
                             // StepN: Wait for ChargeReport message
@@ -399,14 +393,13 @@ module Charging_TCs {
     
             /**
              * @desc    TC_CR_FE_BV_08: Verify that Vehicle License Plate Number is not used in Charge Report once it is used in lower level data elements.
-             * @remark  [17575-1:2016], Clause 6.4.2 vehicleLPNr.
+             * @remark  [17575-1:2016], Clause 7.5.2 vehicleLPNr
              * vehicleLPNr (type of VehicleLicencePlateNumber) is a field of VehicleDescription. It's involved in the following lower level data elements:
              * - AggregatedSingleTariffClassSession -> UsageStatement
              * - DetectedChargeObject -> UsageStatement
              * - ListOfRawUsageData -> UsageStatement
              */
-            testcase TC_CR_FE_BV_08() runs on EutComp system TestAdapter 
-            {
+            testcase TC_CR_FE_BV_08() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message on Step1
                 
                 // Preamble
@@ -432,7 +425,7 @@ module Charging_TCs {
                             // Step4: Set verdict pass
                             setverdict(pass);
                             // Step5: Send ChargeReportResponse
-                            pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                            pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                         }
                     }
                     // FIXME Could be replaced by templates
@@ -453,7 +446,7 @@ module Charging_TCs {
                                 // Step4: Set verdict pass
                                 setverdict(pass);
                                 // Step5: Send ChargeReportResponse
-                                pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                             }
                         }
                     } // pco.receive(mw_chargeReport_tableC1)
@@ -466,10 +459,9 @@ module Charging_TCs {
     
             /**
              * @desc    TC_CR_FE_BV_09: Verify the uniqueness of Usage Statement ID
-             * @remark  [17575-1:2016], Clause 6.5.2  usageStatementID
+             * @remark  [17575-1:2016], Clause 7.6.3 usageStatementID
              */
-            testcase TC_CR_FE_BV_09() runs on EutComp system TestAdapter 
-            {
+            testcase TC_CR_FE_BV_09() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -496,7 +488,7 @@ module Charging_TCs {
                             // Step4: Set verdict pass
                             setverdict(pass);
                             // Step5: Send ChargeReportResponse
-                            pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                            pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                         }
                     } // pco.receive(mw_chargeReport_tableC1)
                 } // End of alt statement
@@ -508,10 +500,9 @@ module Charging_TCs {
     
             /**
              * @desc    TC_CR_FE_BV_10: Verify that begin period is lower than end period in Report Period
-             * @remark  [17575-1:2016], Clause 6.3.3 reportPeriod
+             * @remark  [17575-1:2016], Clause 7.3.2 reportPeriod
              */
-            testcase TC_CR_FE_BV_10() runs on EutComp system TestAdapter 
-            {
+            testcase TC_CR_FE_BV_10() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -538,7 +529,7 @@ module Charging_TCs {
                             // Step4: Set verdict pass
                             setverdict(pass);
                             // Step5: Send ChargeReportResponse
-                            pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                            pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                         }
                     } // pco.receive(mw_chargeReport_tableC1)
                 } // End of alt statement
@@ -580,7 +571,7 @@ module Charging_TCs {
 //                            // Step4: Set verdict pass
 //                            setverdict(pass);
 //                            // Step5: Send ChargeReportResponse
-//                            pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+//                            pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
 //                        }
 //                    } // pco.receive(mw_chargeReport_tableC1)
 //                } // End of alt statement
@@ -622,7 +613,7 @@ module Charging_TCs {
 //                            // Step4: Set verdict pass
 //                            setverdict(pass);
 //                            // Step5: Send ChargeReportResponse
-//                            pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+//                            pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
 //                        }
 //                    } // pco.receive(mw_chargeReport_tableC1)
 //                } // End of alt statement
@@ -664,7 +655,7 @@ module Charging_TCs {
 //                            // Step4: Set verdict pass
 //                            setverdict(pass);
 //                            // Step5: Send ChargeReportResponse
-//                            pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+//                            pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
 //                        }
 //                    } // pco.receive(mw_chargeReport_tableC1)
 //                } // End of alt statement
@@ -706,7 +697,7 @@ module Charging_TCs {
 //                            // Step4: Set verdict pass
 //                            setverdict(pass);
 //                            // Step5: Send ChargeReportResponse
-//                            pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+//                            pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
 //                        }
 //                    } // pco.receive(mw_chargeReport_tableC1)
 //                } // End of alt statement
@@ -748,7 +739,7 @@ module Charging_TCs {
 //                            // Step4: Set verdict pass
 //                            setverdict(pass);
 //                            // Step5: Send ChargeReportResponse
-//                            pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+//                            pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
 //                        }
 //                    } // pco.receive(mw_chargeReport_tableC1)
 //                } // End of alt statement
@@ -757,6 +748,101 @@ module Charging_TCs {
 //                // Postamble
 //                f_Charging_Postambule();
 //            } // End of TC TC_CR_FE_BV_15
+              
+            /**
+             * @desc    TC_CR_FE_BV_16:Verify that begin period is lower than end period in Report Period
+             * @remark  [17575-1:2016], Clause 7.3.2 reportPeriod
+             */
+            testcase TC_CR_FE_BV_16() runs on EutComp system TestAdapter {
+                var ChargeReport v_chargeReport := null; // Variable used to store the received message on Step1
+                
+                // Preamble
+                f_Charging_Preambule();
+                // Front End received already Context Data 
+                f_SendContextData(m_ContextData_chargeReportFinalRecipient); 
+                // No authentication is required
+                // Preamble done
+    
+                // Test body start
+                t_ac.start;
+                // Step1: wait for ChargeReport message
+                alt {
+                    [] pco.receive(mw_chargeReport_chargeReportFinalRecipient) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                        // Stop timer
+                        t_ac.stop;
+                        // Step4: Verify that all chargeReportFinalRecipient elements used in ChargeReport equals to v1
+                        if (v_chargeReport.chargeReportFinalRecipient.providerIdentifier != PX_TOLL_CONTEXT_ID_IDENTIFIER) {
+                            // Step4: Set verdict failed
+                            setverdict(fail);
+                            // No Step5
+                        } else {
+                            // Step4: Set verdict pass
+                            setverdict(pass);
+                            // Step5: Send ChargeReportResponse
+                            pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
+                        }
+                    }
+                } // End of alt statement
+                // Test body done
+    
+                // Postamble
+                f_Charging_Postambule();
+            } // End of TC TC_CR_FE_BV_16
+            
+            /**
+             * @desc    TC_CR_FE_BV_17: Verify that Authenticated Charge Report is used
+             * @remark  [17575-1:2016] Clause 7.2.1 ChargeReport 
+             * @remark  [17575-1:2016] Clause 7.4.1 AuthenticatedChargeReport
+             */
+            testcase TC_CR_FE_BV_17() runs on EutComp system TestAdapter {
+                
+                // Local variables
+                var ChargeReport v_chargeReport;
+                var boolean v_result;
+                
+                // Test control
+                if (not PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
+                // Preamble
+                f_Charging_Preambule();
+                // Front End shall already received Context Data
+                f_SendContextData(m_contextData_default);
+                // Authentication is required
+                // Preamble done
+
+                // Test body start
+                t_ac.start;
+                // Step3: Wait for ChargeReport message
+                t_ac.start;
+                alt { // Step3: Check if tollContext in ChargeReport equals to tollContextOverview.tollContext in ContextData1
+                    [] a_pco_recv_iso17575_3Adu_chargeReport(
+                        mw_chargeReport_chargeReportCounter(
+                            valueof(
+                                m_contextData_default.tollContextOverview.unsigned_data.tollContext
+                        )),
+                        v_chargeReport,
+                        v_result
+                    ) {
+                        // Stop timer
+                        t_ac.stop;
+                        // Step4: Set verdict pass
+                        if (v_result == true) {
+                            setverdict(pass);
+                        } else {
+                            setverdict(fail);
+                        }
+                    }
+                } // End of 'alt' statement
+                // Test body done
+
+                // Postamble
+                f_Charging_Postambule();
+            } // End of TC TC_CR_FE_BV_17
+            
         } // End of group Valid_Behaviour
 
         /**
@@ -794,7 +880,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data with Charge Report Configuration requesting chargeReportCounter or mileage to be present
-                f_SendContextData(m_ContextData_default_chargeReportCounter_requested);
+                f_SendContextData(m_ContextData_chargeReportCounter_requested);
                 // No authentication is required
                 // Preamble done
     
@@ -828,7 +914,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data with Charge Report Configuration requesting chargeReportCounter or mileage to be present
-                f_SendContextData(m_ContextData_default_chargeReportCounter_requested);
+                f_SendContextData(m_ContextData_chargeReportCounter_requested);
                 // No authentication is required
                 // Preamble done
     
@@ -862,7 +948,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data with Charge Report Configuration requesting chargeReportCounter or mileage to be present
-                f_SendContextData(m_ContextData_default_chargeReportCounter_requested);
+                f_SendContextData(m_ContextData_chargeReportCounter_requested);
                 // No authentication is required
                 // Preamble done
     
@@ -896,7 +982,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data with Charge Report Configuration requesting chargeReportCounter or mileage to be present
-                f_SendContextData(m_ContextData_default_chargeReportCounter_requested);
+                f_SendContextData(m_ContextData_chargeReportCounter_requested);
                 // No authentication is required
                 // Preamble done
     
@@ -930,7 +1016,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data with Charge Report Configuration requesting chargeReportCounter or mileage to be present
-                f_SendContextData(m_ContextData_default_chargeReportCounter_requested);
+                f_SendContextData(m_ContextData_chargeReportCounter_requested);
                 // No authentication is required
                 // Preamble done
     
@@ -964,7 +1050,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is credit based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -991,7 +1077,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'ok'
                                 setverdict(pass);
                                 // Step: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1013,7 +1099,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is credit based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1040,7 +1126,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'low'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1062,7 +1148,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is credit based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1089,7 +1175,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'empty'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1111,7 +1197,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is credit based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1138,7 +1224,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'negative'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1160,7 +1246,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is distance based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1187,7 +1273,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'ok'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1209,7 +1295,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is distance based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1236,7 +1322,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'low'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1258,7 +1344,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is  based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1285,7 +1371,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'empty'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1307,7 +1393,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is distance based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1334,7 +1420,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'negative'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1356,7 +1442,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, time_THR);
@@ -1382,7 +1468,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'ok'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1404,7 +1490,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, time_THR);
@@ -1430,7 +1516,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'low'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1452,7 +1538,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, time_THR);
@@ -1478,7 +1564,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'empty'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1500,7 +1586,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, duration_THR_UNIT);
@@ -1526,7 +1612,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'negative'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1548,7 +1634,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is duration based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1575,7 +1661,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'ok'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1597,7 +1683,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is duration based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1624,7 +1710,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'low'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1646,7 +1732,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is duration based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1673,7 +1759,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'empty'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1695,7 +1781,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is duration based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -1722,7 +1808,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'negative'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1744,7 +1830,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, event_THR);
@@ -1770,7 +1856,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'ok'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1792,7 +1878,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, event_THR);
@@ -1818,7 +1904,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'low'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1840,7 +1926,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, event_THR);
@@ -1866,7 +1952,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'empty'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1888,7 +1974,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, event_THR);
@@ -1914,7 +2000,7 @@ module Charging_TCs {
                                 // Step6: accountS2 == 'negative'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_transactionCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1937,7 +2023,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is credit based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -2003,7 +2089,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is distance based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -2069,7 +2155,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports on-board account
                 // On-board account is distance based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
@@ -2135,7 +2221,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports credit based on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, paymentFee_THR_UNIT);
@@ -2202,7 +2288,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports distance based on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, distance_THR_UNIT);
@@ -2269,7 +2355,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports distance based on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, event_THR);
@@ -2339,7 +2425,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports credit based on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, paymentFee_THR_UNIT);
@@ -2400,7 +2486,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports distance based on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, distance_THR_UNIT);
@@ -2461,7 +2547,7 @@ module Charging_TCs {
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_default_accountStatus_chargeReportCounter_mileage_requested);
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports distance based on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, event_THR);
@@ -2550,7 +2636,7 @@ module Charging_TCs {
 //                        // Stop timer
 //                        t_ac.stop;
 //                        // Step2: Send ChargeReportResponse
-//                        pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+//                        pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
 //                        // Step3: Check the Communication System [TS 17575-2]
 //                        f_userActions(cmdCheck, checkCommunicationSystem);
 //                        
@@ -2584,7 +2670,7 @@ module Charging_TCs {
                         // Stop timer
                         t_ac.stop;
                         // Step2: Send ChargeReportResponse
-                        pco.send(m_chargeReportResponse_transactionCounter(PX_TRANSACTION_COUNTER_RESPONSE));
+                        pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
                         // Step3: ChargeReportResponse not received, see default altsteps
                         
                         // Step4: Verify structure of sent ChargeReportResponse, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.7
