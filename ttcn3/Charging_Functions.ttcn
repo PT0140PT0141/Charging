@@ -178,7 +178,7 @@ module Charging_Functions {
         return boolean {
             // p_value shall not be omit
 
-            if ((ispresent(p_value.vehicleDescription) == true) and (ispresent(p_value.vehicleDescription.vehicleDescription) == true)) {
+            if ((ispresent(p_value.vehicleDescription) == true) and (p_value.vehicleDescription == true)) {
                     // vehicleLPNr was found
                     return true; // Success
             }
