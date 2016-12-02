@@ -103,6 +103,11 @@ module Charging_TE {
              * @remark  [17575-1:2016] Clause 7.4.1 AuthenticatedChargeReport
              */
             execute(TC_CR_FE_BV_17(), PX_GUARD);
+            /**
+             * @desc    TC_CR_FE_BV_18: Verify that authenticated usage statement is used
+             * @remark  [17575-1:2016] Clause 7.4.3 AuthenticatedUsageStatement
+             */
+            execute(TC_CR_FE_BV_18(), PX_GUARD);
             
 //
     /**
@@ -118,8 +123,8 @@ module Charging_TE {
      * @remark  34 TCs
      */
             /**
-             * @desc    TC_BEF_FE_BV_01: Verify that OBE Status For Driver is ‘OK’ having received Charge Report Response
-             * @remark  [17575-1:2016], Clause 6.4.7 obeStatusForDriver
+             * @desc    TC_BEF_FE_BV_01: Verify that chargeReportFinalRecipient is the same in Context Data and Charge Report
+             * @remark  [17575-1:2016], Clause 7.5.7 obeStatusForDriver
              */
             execute(TC_BEF_FE_BV_01(), PX_GUARD);
             /**
@@ -129,17 +134,17 @@ module Charging_TE {
             execute(TC_BEF_FE_BV_02(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_03: Verify that OBE Status For Driver is ‘contactOperator’ having received Charge Report Response
-             * @remark  [17575-1:2016], Clause 6.4.7 obeStatusForDriver
+             * @remark  [17575-1:2016], Clause 7.5.7 obeStatusForDriver
              */
             execute(TC_BEF_FE_BV_03(), PX_GUARD);
-            /**
-             * @desc    TC_BEF_FE_BV_04: Verify that OBE Status For Driver is ‘nokInLocalContext’ having received Charge Report Response
-             * @remark  [17575-1:2016], Clause 6.4.7 obeStatusForDriver
-             */
-            execute(TC_BEF_FE_BV_04(), PX_GUARD);
+//            /**
+//             * @desc    TC_BEF_FE_BV_04: Verify that OBE Status For Driver is ‘nokInLocalContext’ having received Charge Report Response
+//             * @remark  [17575-1:2016], Clause 7.5.7 obeStatusForDriver
+//             */
+//            execute(TC_BEF_FE_BV_04(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_05: Verify that OBE Status For Driver is ‘noSignalling’ having received Charge Report Response
-             * @remark  [17575-1:2016], Clause 6.4.7 obeStatusForDriver
+             * @remark  [17575-1:2016], Clause 7.5.7 obeStatusForDriver
              */
             execute(TC_BEF_FE_BV_05(), PX_GUARD);
             /**

@@ -68,10 +68,9 @@ module Charging_Functions {
          * @verdict     unchanged
          */
         function f_SendContextData(
-                                   in template Iso17575_3AduBody p_ContextData
+                                   in template (value) Iso17575_3AduBody p_ContextData
         ) runs on EutComp {
             f_pco_send_iso17575_3Adu(m_iso17575_3Adu(m_aduHeader_default, p_ContextData));
-//TODO To be removed            pco.send (m_iso17575_3Adu(m_aduHeader_default, p_ContextData));
         } // End of function f_SendContextData
         
     } // End of group Charging_Preamble

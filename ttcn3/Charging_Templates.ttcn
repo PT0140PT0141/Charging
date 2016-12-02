@@ -93,6 +93,15 @@ module Charging_Templates {
             listOfChargeObjects := true
         } // End of template m_usageStatementContent_DetectedChargeObject_requested
         /**
+         * @desc    UsageStatementContent with listOfChargeObjects requested with authentication
+         * @see     [17575-3:2016], Clause 8.3.5.2.2 Data type UsageStatementContent
+         * @remark  Use PICS to initialize properly this template. These values are assigned according to [16410-1:2016], Table C.4: ContextData1
+         */
+        template (value) UsageStatementContent m_usageStatementContent_DetectedChargeObject_requested_authenticated
+        modifies m_usageStatementContent_DetectedChargeObject_requested := {
+            useOfUsageStatementAuthentication := true
+        } // End of template m_usageStatementContent_DetectedChargeObject_requested_authenticated
+        /**
          * @desc    UsageStatementContent with aggregatedFee requested
          * @see     [17575-3:2016], Clause 8.3.5.2.2 Data type UsageStatementContent
          * @remark  Use PICS to initialize properly this template. These values are assigned according to [16410-1:2016], Table C.4: ContextData1
@@ -238,6 +247,15 @@ module Charging_Templates {
             detectedChargeObjectContent := m_detectedChargeObjectContent_tariffClass_requested
         } // End of template m_chargeReportConfiguration_DetectedChargeObjectContent_tariffClass
         /**
+         * @desc    UsageStatementContent with detectedChargeObjectContent with authentication requested
+         * @see     [17575-3:2016], Clause 8.3.5.2.2 Data type UsageStatementContent
+         */
+        template (value) ChargeReportConfiguration m_chargeReportConfiguration_DetectedChargeObjectContent_tariffClass_authenticated
+        modifies m_chargeReportConfiguration_default := {
+            usageStatementContent := m_usageStatementContent_DetectedChargeObject_requested_authenticated,
+            detectedChargeObjectContent := m_detectedChargeObjectContent_tariffClass_requested
+        } // End of template m_chargeReportConfiguration_DetectedChargeObjectContent_tariffClass_authenticated
+        /**
          * @desc    UsageStatementContent with listOfRawUsageDataContent requested
          * @see     [17575-3:2016], Clause 8.3.5.2.2 Data type UsageStatementContent
          */
@@ -272,8 +290,15 @@ module Charging_Templates {
          */
         template (value) Iso17575_3AduBody m_ContextData_usageStatementContent_DetectedChargeObject_requested
         modifies m_contextData_default := {
-            chargeReportConfiguration := m_optionally_Signed_Unsecured<ChargeReportConfigurations>({ m_chargeReportConfiguration_mileage_requested })
+            chargeReportConfiguration := m_optionally_Signed_Unsecured<ChargeReportConfigurations>({ m_chargeReportConfiguration_DetectedChargeObjectContent_tariffClass })
         } //End of template m_ContextData_usageStatementContent_DetectedChargeObject_requested
+        /**
+         * @desc    ContextData template with UsageStatement.DetectedChargeObject requested in ChargeReport messages, with authentication
+         */
+        template (value) Iso17575_3AduBody m_ContextData_usageStatementContent_DetectedChargeObject_authenticated_requested
+        modifies m_contextData_default := {
+            chargeReportConfiguration := m_optionally_Signed_Unsecured<ChargeReportConfigurations>({ m_chargeReportConfiguration_DetectedChargeObjectContent_tariffClass_authenticated })
+        } //End of template m_ContextData_usageStatementContent_DetectedChargeObject_authenticated_requested
         /**
          * @desc    ContextData template with UsageStatement.aggregatedFee requested in ChargeReport messages
          */
@@ -389,13 +414,21 @@ module Charging_Templates {
          * @desc    This is the minimal form of awaited ChargeReport message, all optional fields are ignored
          * @see     [TS 17575-3], 7.2.1 ChargeReport
          */
-        template ChargeReport mw_chargeReport_chargeReportFinalRecipient modifies mw_chargeReport_any:= {
-			chargeReportFinalRecipient := ?
+        template ChargeReport mw_chargeReport_chargeReportFinalRecipient(
+                                                                         in template Provider p_chargeReportFinalRecipient := ?
+        ) modifies mw_chargeReport_any:= {
+            chargeReportFinalRecipient := p_chargeReportFinalRecipient
         } // End of template mw_chargeReport_chargeReportFinalRecipient
         
-        
-        
-        
+        /**
+         * @desc    This is the default form of awaited ChargeReport message with authentication. 
+         * Only mandatory fields are set, check m_chargeReportContent_default template for these fields 
+         * @see     [TS 17575-3], 7.2.1 ChargeReport
+         */
+        template ChargeReport mw_chargeReport_authenticated
+        modifies mw_chargeReport_default := {
+            usageStatementList := superset(mw_usageStatement_authenticatedUsageStatement<octetstring>)
+        } // End of template mw_chargeReport_authenticated
         
     } // End of group ChargeReport_Templates
 
