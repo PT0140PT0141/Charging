@@ -1282,6 +1282,13 @@ module Charging_TCs {
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1330,6 +1337,13 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_11() runs on EutComp system TestAdapter 
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -1380,6 +1394,13 @@ module Charging_TCs {
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1428,6 +1449,13 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_13() runs on EutComp system TestAdapter 
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -1478,6 +1506,13 @@ module Charging_TCs {
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1525,6 +1560,13 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_15() runs on EutComp system TestAdapter 
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -1574,6 +1616,13 @@ module Charging_TCs {
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1621,6 +1670,13 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_17() runs on EutComp system TestAdapter 
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -1670,6 +1726,14 @@ module Charging_TCs {
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
+                
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1716,6 +1780,13 @@ module Charging_TCs {
              */
             testcase TC_BEF_FE_BV_19() runs on EutComp system TestAdapter             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
 
                 // Preamble
                 f_Charging_Preambule();
@@ -1764,6 +1835,13 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_20() runs on EutComp system TestAdapter{
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
 
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1810,6 +1888,13 @@ module Charging_TCs {
              */
             testcase TC_BEF_FE_BV_21() runs on EutComp system TestAdapter{
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
 
                 // Preamble
                 f_Charging_Preambule();
@@ -1859,6 +1944,13 @@ module Charging_TCs {
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
 
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1904,7 +1996,14 @@ module Charging_TCs {
              */
             testcase TC_BEF_FE_BV_23() runs on EutComp system TestAdapter
             {
-                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                var ChargeReport v_chargeReport := null; // Variable used to store the received message
+
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
 
                 // Preamble
                 f_Charging_Preambule();
@@ -1953,6 +2052,13 @@ module Charging_TCs {
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
 
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1999,6 +2105,14 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_25() runs on EutComp system TestAdapter
             {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -2047,6 +2161,13 @@ module Charging_TCs {
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
+
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
 
                 // Preamble
                 f_Charging_Preambule();
@@ -2112,6 +2233,13 @@ module Charging_TCs {
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
+
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
 
                 // Preamble
                 f_Charging_Preambule();
@@ -2182,6 +2310,13 @@ module Charging_TCs {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
 
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -2247,6 +2382,13 @@ module Charging_TCs {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
 
+
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -2304,6 +2446,13 @@ module Charging_TCs {
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
+
+				// Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
 
                 // Preamble
                 f_Charging_Preambule();
