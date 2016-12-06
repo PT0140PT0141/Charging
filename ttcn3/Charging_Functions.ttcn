@@ -388,10 +388,17 @@ module Charging_Functions {
                 "", ""
             };
             /**
-             * @desc    Set reload Account threshold
+             * @desc    Set reload Account threshold  - OLD VERSION, TO BE REMOVED if not used
              */
             const ParameterList reloadOldAccount_THR := {
                 "reloadOldAccount", int2str(float2int(int2float(PX_ACCOUNT_BASED_THR) / 4.0)),
+                "", ""
+            };
+            /**
+             * @desc    Set credit-account limit to a value lower than threshold
+             */
+            const ParameterList newCreditLimit_ACC := {
+                "newCreditLimit", int2str(float2int(int2float(PX_ACCOUNT_BASED_THR) / 4.0)),
                 "", ""
             };
             /**
@@ -403,10 +410,17 @@ module Charging_Functions {
                 "", ""
             };
             /**
-             * @desc    Set reload distance limit threshold
+             * @desc    Set reload distance limit threshold  - OLD VERSION, TO BE REMOVED if not used
              */
             const ParameterList reloadOldDistance_THR := {
                 "reloadOldDistanceLimit", int2str(float2int(int2float(PX_DISTANCE_BASED_THR) / 4.0)),
+                "", ""
+            };
+            /**
+             * @desc    Set distance limit for the distance-based account - should be lower than threshold
+             */
+            const ParameterList newDistanceLimit_ACC := {
+                "newDistanceLimit", int2str(float2int(int2float(PX_DISTANCE_BASED_THR) / 4.0)),
                 "", ""
             };
             /**
@@ -417,7 +431,7 @@ module Charging_Functions {
                 "", ""
             };
              /**
-             * @desc    Set Distance based
+             * @desc    Set the threshold for distance-based account
              */
             const ParameterList duration_THR_UNIT := {
                 "Duration.dur", int2str(float2int(PX_DURATION_BASED_THR)),
@@ -425,19 +439,18 @@ module Charging_Functions {
                 "", ""
             };
              /**
-             * @desc    Set Event based
+             * @desc    Set the threshold for the event-based acccount
              */
             const ParameterList event_THR := {
                 "event", int2str(PX_EVENT_BASED_THR),
                 "", ""
             };
             /**
-             * @desc    Set reload event limit threshold
-             */
-            const ParameterList reloadOldEvent_THR := {
-                "reloadOldEventLimit", int2str(float2int(int2float(PX_EVENT_BASED_THR) / 4.0)),
-                "", ""
-            };
+            * @desc Set new account limiy to a value lower than threshold for reload
+            */
+            const ParameterList newEventLimit_ACC := {
+                "newEventLimit", int2str(float2int(int2float(PX_EVENT_BASED_THR) / 4.0))
+            }
        } // End of group Arguments
     } // End of group DUT_Actions
 }

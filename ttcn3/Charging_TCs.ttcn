@@ -1280,6 +1280,13 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_10() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1327,6 +1334,13 @@ module Charging_TCs {
              */
             testcase TC_BEF_FE_BV_11() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -1376,6 +1390,13 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_12() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1423,6 +1444,13 @@ module Charging_TCs {
              */
             testcase TC_BEF_FE_BV_13() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -1472,6 +1500,13 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_14() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1518,6 +1553,13 @@ module Charging_TCs {
              */
             testcase TC_BEF_FE_BV_15() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -1566,6 +1608,13 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_16() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1612,6 +1661,13 @@ module Charging_TCs {
              */
             testcase TC_BEF_FE_BV_17() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -1660,6 +1716,14 @@ module Charging_TCs {
             testcase TC_BEF_FE_BV_18() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
+                
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1700,14 +1764,21 @@ module Charging_TCs {
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_18
-
-            /**
+             /**
              * @desc    TC_BEF_FE_BV_19: Verify that DUT sets Account Status to ‘LOW’ for duration based on-board accounts
              * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             testcase TC_BEF_FE_BV_19() runs on EutComp system TestAdapter {
+
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
-                
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1715,47 +1786,53 @@ module Charging_TCs {
                 // Front End implementation supports on-board account
                 // On-board account is duration based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
-                f_userActions(cmdSet, distance_THR_UNIT);
+                f_userActions(cmdSet, duration_THR_UNIT);
                 // No authentication is required
                 // Preamble done
                 f_userActions(cmdSet, contract1);
 
                 // Test body start
                 t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
+                // Step1: Wait for ChargeReport message
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence a
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with 0 < duration < THR: duration ==  PX_DURATION_BASED_THR/4.0
-                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newDurationLimit(v_chargeReport.chargeReportCounter + 1, float2int(PX_DURATION_BASED_THR / 4.0)));
+                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newDurationLimit(v_chargeReport.chargeReportCounter, float2int(PX_DURATION_BASED_THR / 4.0)));
                         // Step5: Wait for ChargeReport message with accountStatus==low
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_low_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_low_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taking
                                 // Stop timer
                                 t_ac.stop;
                                 // Step6: accountS2 == 'low'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_19
-
             /**
              * @desc    TC_BEF_FE_BV_20: Verify that DUT sets Account Status to ‘EMPTY’ for duration based on-board accounts
              * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             testcase TC_BEF_FE_BV_20() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
-                
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1763,47 +1840,53 @@ module Charging_TCs {
                 // Front End implementation supports on-board account
                 // On-board account is duration based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
-                f_userActions(cmdSet, distance_THR_UNIT);
+                f_userActions(cmdSet, duration_THR_UNIT);
                 // No authentication is required
                 // Preamble done
                 f_userActions(cmdSet, contract1);
 
                 // Test body start
                 t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
+                // Step1: Wait for ChargeReport message
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence a
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with duration == 0.0
-                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newDurationLimit(v_chargeReport.chargeReportCounter + 1, 0));
+                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newDurationLimit(v_chargeReport.chargeReportCounter, 0));
                         // Step5: Wait for ChargeReport message with accountStatus==empty
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_empty_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_empty_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taki
                                 // Stop timer
                                 t_ac.stop;
                                 // Step6: accountS2 == 'empty'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_20
-
             /**
              * @desc    TC_BEF_FE_BV_21: Verify that DUT sets Account Status to ‘NEGATIVE’ for duration based on-board accounts
              * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             testcase TC_BEF_FE_BV_21() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
-                
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1811,47 +1894,53 @@ module Charging_TCs {
                 // Front End implementation supports on-board account
                 // On-board account is duration based with unit defined as UNIT
                 // Threshold for on-board account is set to THR
-                f_userActions(cmdSet, distance_THR_UNIT);
+                f_userActions(cmdSet, duration_THR_UNIT);
                 // No authentication is required
                 // Preamble done
                 f_userActions(cmdSet, contract1);
 
                 // Test body start
                 t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
+                // Step1: Wait for ChargeReport message
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence a
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with duration < 0
-                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newDurationLimit(v_chargeReport.chargeReportCounter + 1, float2int(-1.0 * PX_DURATION_BASED_THR)));
+                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newDurationLimit(v_chargeReport.chargeReportCounter, float2int(-1.0 * PX_DURATION_BASED_THR)));
                         // Step5: Wait for ChargeReport message with accountStatus==negative
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_negative_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_negative_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, t
                                 // Stop timer
                                 t_ac.stop;
                                 // Step6: accountS2 == 'negative'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_21
-
             /**
              * @desc    TC_BEF_FE_BV_22: Verify that DUT sets Account Status to ‘OK’ for event based on-board accounts
              * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             testcase TC_BEF_FE_BV_22() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
-                
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1865,23 +1954,23 @@ module Charging_TCs {
 
                 // Test body start
                 t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
+                // Step1: Wait for ChargeReport message
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence a
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with event > THR: 2 * PX_EVENT_BASED_THR
-                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newEventLimit(v_chargeReport.chargeReportCounter + 1, PX_EVENT_BASED_THR * 2));
+                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newEventLimit(v_chargeReport.chargeReportCounter, PX_EVENT_BASED_THR * 2));
                         // Step5: Wait for ChargeReport message with accountStatus==ok
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taking
                                 // Stop timer
                                 t_ac.stop;
                                 // Step6: accountS2 == 'ok'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1891,13 +1980,19 @@ module Charging_TCs {
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_22
-
             /**
              * @desc    TC_BEF_FE_BV_23: Verify that DUT sets Account Status to ‘LOW’ for event based on-board accounts
              * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             testcase TC_BEF_FE_BV_23() runs on EutComp system TestAdapter {
-                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -1912,23 +2007,23 @@ module Charging_TCs {
 
                 // Test body start
                 t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
+                // Step1: Wait for ChargeReport message
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence a
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with 0 < event < THR: event = int(PX_EVENT_BASED_THR / 4)
-                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newEventLimit(v_chargeReport.chargeReportCounter + 1, float2int(int2float(PX_EVENT_BASED_THR) / 4.0)));
+                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newEventLimit(v_chargeReport.chargeReportCounter, float2int(int2float(PX_EVENT_BASED_THR) / 4.0)));
                         // Step5: Wait for ChargeReport message with accountStatus==low
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_low_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_low_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taking
                                 // Stop timer
                                 t_ac.stop;
                                 // Step6: accountS2 == 'low'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1938,14 +2033,20 @@ module Charging_TCs {
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_23
-
             /**
              * @desc    TC_BEF_FE_BV_24: Verify that DUT sets Account Status to ‘EMPTY’ for event based on-board accounts
              * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             testcase TC_BEF_FE_BV_24() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
-                
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -1959,23 +2060,23 @@ module Charging_TCs {
 
                 // Test body start
                 t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
+                // Step1: Wait for ChargeReport message
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence a
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with event == 0
-                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newEventLimit(v_chargeReport.chargeReportCounter + 1, 0));
+                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newEventLimit(v_chargeReport.chargeReportCounter, 0));
                         // Step5: Wait for ChargeReport message with accountStatus==empty
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_empty_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_empty_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taki
                                 // Stop timer
                                 t_ac.stop;
                                 // Step6: accountS2 == 'empty'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -1985,13 +2086,20 @@ module Charging_TCs {
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_24
-
-            /**
+             /**
              * @desc    TC_BEF_FE_BV_25: Verify that DUT sets Account Status to ‘NEGATIVE’ for event based on-board accounts
              * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             testcase TC_BEF_FE_BV_25() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
+                
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
                 
                 // Preamble
                 f_Charging_Preambule();
@@ -2006,23 +2114,23 @@ module Charging_TCs {
 
                 // Test body start
                 t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
+                // Step1: Wait for ChargeReport message
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value v_chargeReport { // Step2: Verify structure of sent ChargeReport, taking presence a
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with event < 0
-                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newEventLimit(v_chargeReport.chargeReportCounter + 1, -1 * PX_EVENT_BASED_THR));
+                        pco.send(m_chargeReportResponse_chargeReportCounter_accountUpdate_newEventLimit(v_chargeReport.chargeReportCounter, -1 * PX_EVENT_BASED_THR));
                         // Step5: Wait for ChargeReport message with accountStatus==negative
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_negative_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_negative_)) -> value v_chargeReport { // Step6: Verify structure of sent ChargeReport, t
                                 // Stop timer
                                 t_ac.stop;
                                 // Step6: accountS2 == 'negative'
                                 setverdict(pass);
                                 // Step7: Send ChargeReportResponse with accountStatus==ok
-                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter + 1));
+                                pco.send(m_chargeReportResponse_chargeReportCounter(v_chargeReport.chargeReportCounter));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
@@ -2032,16 +2140,22 @@ module Charging_TCs {
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_25
-
             /**
              * @desc    TC_BEF_FE_BV_26: Verify that DUT update Account Status for credit based on-board accounts upon AddToAccount operation
-             * @remark  [17575-1:2016], Clause 6.6 Account
+             * @remark  [17575-1:2016], Clause 7.7.5 Account
              */
-            testcase TC_BEF_FE_BV_26() runs on EutComp system TestAdapter 
+            testcase TC_BEF_FE_BV_26() runs on EutComp system TestAdapter
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
-                
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -2059,16 +2173,16 @@ module Charging_TCs {
                 t_ac.start;
                 // Step1: Wait for ChargeReport message with accountStatus==ok
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence an
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with 0 < addCredit < THR: paymentFeeAmount = int(PX_ACCOUNT_BASED_THR/4)
-                        label Step4; 
-                        pco.send(m_chargeReportResponse_chargeReportCounter_addToAccount_addCredit(chargeReport1.chargeReportCounter + 1, float2int(int2float(PX_ACCOUNT_BASED_THR) / 4.0)));
-                        // Step5: Wait for ChargeReport message with accountStatus==ok
+                        label Step4;
+                        pco.send(m_chargeReportResponse_chargeReportCounter_addToAccount_addCredit(chargeReport1.chargeReportCounter, float2int(int2float(PX_ACCOUNT_BASED_THR) / 4.0)));
+                        // Step5: Wait for ChargeReport message
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking pre
                                 // Stop timer
                                 t_ac.stop;
                                 // Step8: Validate transitions
@@ -2079,73 +2193,7 @@ module Charging_TCs {
                                 } else {
                                     // Step8: pass
                                     // Step9: Check accountS2
-                                    if (match(chargeReport2.accountStatus, AccountStatus_ok_)) { // Step9: IF (accountS2 equals to 0) 
-                                        // Step9: pass
-                                        setverdict(pass);
-                                    } else {// Step9: accountS2 not equals to 0
-                                        // Assign value of accountS2 to accountS1
-                                        chargeReport1.accountStatus := chargeReport2.accountStatus; 
-                                        // Step9: goto Step4
-                                        goto Step4;
-                                    }
-                                }
-                            } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
-                        }
-                    } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
-                } // End of alt statement
-                // Test body done
-    
-                // Postamble
-                f_Charging_Postambule();
-            } // End of TC TC_BEF_FE_BV_26
-
-            /**
-             * @desc    TC_BEF_FE_BV_27: Verify that DUT updates Account Status for distance based on-board accounts upon AddToAccount operation
-             * @remark  [17575-1:2016], Clause 6.6 Account
-             */
-            testcase TC_BEF_FE_BV_27() runs on EutComp system TestAdapter 
-            {
-                var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
-                var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
-                
-                // Preamble
-                f_Charging_Preambule();
-                // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
-                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
-                // Front End implementation supports on-board account
-                // On-board account is distance based with unit defined as UNIT
-                // Threshold for on-board account is set to THR
-                f_userActions(cmdSet, distance_THR_UNIT);
-                // Front End shall not change its mileage during the whole test purpose
-                // No authentication is required
-                // Preamble done
-                f_userActions(cmdSet, contract1);
-
-                // Test body start
-                t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
-                alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
-                        // Stop timer
-                        t_ac.stop;
-                        // Step4: Send ChargeReportResponse with 0 < addDistance < THR: int(PX_DISTANCE_BASED_THR / 4)
-                        label Step4; 
-                        pco.send(m_chargeReportResponse_chargeReportCounter_addToAccount_addDistance(chargeReport1.chargeReportCounter + 1, float2int(int2float(PX_DISTANCE_BASED_THR) / 4.0)));
-                        // Step5: Wait for ChargeReport message with accountStatus==ok
-                        t_ac.start;
-                        alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
-                                // Stop timer
-                                t_ac.stop;
-                                // Step8: Validate transitions
-                                if (f_validate_AddToAccount_Transitions(chargeReport1.accountStatus, chargeReport2.accountStatus) == false) {
-                                    // Step8: fail
-                                    // No Step9
-                                    setverdict(fail);
-                                } else {
-                                    // Step8: pass
-                                    // Step9: Check accountS2
-                                    if (match(chargeReport2.accountStatus, AccountStatus_ok_)) { // Step9: IF (accountS2 equals to 0) 
+                                    if (match(chargeReport2.accountStatus, AccountStatus_ok_)) { // Step9: IF (accountS2 equals to 0)
                                         // Step9: pass
                                         setverdict(pass);
                                     } else {// Step9: accountS2 not equals to 0
@@ -2160,20 +2208,102 @@ module Charging_TCs {
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
-            } // End of TC TC_BEF_FE_BV_27
-
+            } // End of TC TC_BEF_FE_BV_26
             /**
-             * @desc    TC_BEF_FE_BV_28: Verify that DUT updates Account Status for event based on-board accounts upon AddToAccount operation
-             * @remark  [17575-1:2016], Clause 6.6 Account
+             * @desc    TC_BEF_FE_BV_27: Verify that DUT updates Account Status for distance based on-board accounts upon AddToAccount operation
+             * @remark  [17575-1:2016], Clause 7.7.5 Account
              */
-            testcase TC_BEF_FE_BV_28() runs on EutComp system TestAdapter 
+            testcase TC_BEF_FE_BV_27() runs on EutComp system TestAdapter
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
-                
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
+                // Preamble
+                f_Charging_Preambule();
+                // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
+                f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
+                // Front End implementation supports on-board account
+                // On-board account is distance based with unit defined as UNIT
+                // Threshold for on-board account is set to THR
+                f_userActions(cmdSet, distance_THR_UNIT);
+                // Front End shall not change its mileage during the whole test purpose
+                // No authentication is required
+                // Preamble done
+                f_userActions(cmdSet, contract1);
+                // jump here in case the accountStatus is ok
+                                // label Step1;
+                // Test body start
+                t_ac.start;
+                // Step1: Wait for ChargeReport message with accountStatus != ok
+                alt {
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence an
+                        // Stop timer
+                        t_ac.stop;
+                        // Step4: Send ChargeReportResponse with 0 < addDistance < THR: int(PX_DISTANCE_BASED_THR / 4)
+                        //if(match(chargeReport1.accountStatus, AccountStatus_ok_)){
+                        //  goto Step1;
+                         // }
+                        label Step4;
+                        pco.send(m_chargeReportResponse_chargeReportCounter_addToAccount_addDistance(chargeReport1.chargeReportCounter, float2int(int2float(PX_DISTANCE_BASED_THR) / 4.0)));
+                        // Step5: Wait for ChargeReport message with accountStatus==ok
+                        t_ac.start;
+                        alt {
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking pre
+                                // Stop timer
+                                t_ac.stop;
+                                // Step8: Validate transitions
+                                if (f_validate_AddToAccount_Transitions(chargeReport1.accountStatus, chargeReport2.accountStatus) == false) {
+                                    // Step8: fail
+                                    // No Step9
+                                    setverdict(fail);
+                                } else {
+                                    // Step8: pass
+                                    // Step9: Check accountS2
+                                    if (match(chargeReport2.accountStatus, AccountStatus_ok_)) { // Step9: IF (accountS2 equals to 0)
+                                        // Step9: pass
+                                        setverdict(pass);
+                                    } else {// Step9: accountS2 not equals to 0
+                                        // Assign value of accountS2 to accountS1
+                                        chargeReport1.accountStatus := chargeReport2.accountStatus;
+                                        // Step9: goto Step4 - multiple reload
+                                        goto Step4;
+                                    }
+                                }
+                            } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
+                        }
+                    } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
+                } // End of alt statement
+                // Test body done
+
+                // Postamble
+                f_Charging_Postambule();
+            } // End of TC TC_BEF_FE_BV_27
+            /**
+             * @desc    TC_BEF_FE_BV_28: Verify that DUT updates Account Status for event based on-board accounts upon AddToAccount operation
+             * @remark  [17575-1:2016], Clause 7.7.5 Account
+             */
+            testcase TC_BEF_FE_BV_28() runs on EutComp system TestAdapter
+            {
+                var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
+                var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -2191,16 +2321,16 @@ module Charging_TCs {
                 t_ac.start;
                 // Step1: Wait for ChargeReport message with accountStatus==ok
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence an
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with 0 < addEvent < THR: int(PX_EVENT_BASED_THR / 4)
-                        label Step4; 
-                        pco.send(m_chargeReportResponse_chargeReportCounter_addToAccount_addEvents(chargeReport1.chargeReportCounter + 1, float2int(int2float(PX_EVENT_BASED_THR) / 4.0)));
+                        label Step4;
+                        pco.send(m_chargeReportResponse_chargeReportCounter_addToAccount_addEvents(chargeReport1.chargeReportCounter, float2int(int2float(PX_EVENT_BASED_THR) / 4.0)));
                         // Step5: Wait for ChargeReport message with accountStatus==ok
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking pre
                                 // Stop timer
                                 t_ac.stop;
                                 // Step8: Validate transitions
@@ -2211,7 +2341,7 @@ module Charging_TCs {
                                 } else {
                                     // Step8: pass
                                     // Step9: Check accountS2
-                                    if (match(chargeReport2.accountStatus, AccountStatus_ok_)) { // Step9: IF (accountS2 equals to 0) 
+                                    if (match(chargeReport2.accountStatus, AccountStatus_ok_)) { // Step9: IF (accountS2 equals to 0)
                                         // Step9: pass
                                         setverdict(pass);
                                     } else {// Step9: accountS2 not equals to 0
@@ -2226,20 +2356,26 @@ module Charging_TCs {
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_28
-
             /**
              * @desc    TC_BEF_FE_BV_29: Verify that DUT updates Account Status for credit based on-board accounts upon ReloadAccount operation
-             * @remark  [17575-1:2016], Clause 6.6.2 accountUpdate
+             * @remark  [17575-1:2016], Clause 7.7.3 accountUpdate
              */
-            testcase TC_BEF_FE_BV_29() runs on EutComp system TestAdapter 
+            testcase TC_BEF_FE_BV_29() runs on EutComp system TestAdapter
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
-                
+
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -2248,7 +2384,7 @@ module Charging_TCs {
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, paymentFee_THR_UNIT);
                 // Predefined value for reload is less than THR/2, but greater than 0
-                f_userActions(cmdSet, reloadOldAccount_THR);
+                f_userActions(cmdSet, newCreditLimit_ACC);
                 // Front End shall not utilize any credits during the whole test purpose
                 // No authentication is required
                 // Preamble done
@@ -2256,18 +2392,17 @@ module Charging_TCs {
 
                 // Test body start
                 t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
+                // Step1: Wait for ChargeReport message with no specific AccountStatus value
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence an
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with reloadOldCreditAmount set to true
-                        label Step4;
-                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldCreditAmout(chargeReport1.chargeReportCounter + 1, true));
-                        // Step5: Wait for ChargeReport message with accountStatus==ok
+                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldCreditAmout(chargeReport1.chargeReportCounter, true));
+                        // Step5: Wait for ChargeReport message with no specific AccountStatus value
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking pre
                                 // Stop timer
                                 t_ac.stop;
                                 // Step8: Validate transitions
@@ -2276,37 +2411,36 @@ module Charging_TCs {
                                     // No Step9
                                     setverdict(fail);
                                 } else {
-                                    // Step8: pass
-                                    // Step9: Check accountS2
-                                    if (match(chargeReport2.accountStatus, AccountStatus_ok_)) { // Step9: IF (accountS2 equals to 0) 
-                                        // Step9: pass
-                                        setverdict(pass);
-                                    } else {// Step9: accountS2 not equals to 0
-                                        // Assign value of accountS2 to accountS1
-                                        chargeReport1.accountStatus := chargeReport2.accountStatus;
-                                        // Step9: goto Step4
-                                        goto Step4;
-                                    }
+                                      setverdict(pass);
+                                      //Step9: Send the ChargeReportResponse
+                                                                          pco.send(m_chargeReportResponse_chargeReportCounter(chargeReport2.chargeReportCounter));
+
                                 }
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_29
-
             /**
              * @desc    TC_BEF_FE_BV_30: Verify that DUT updates Account Status for distance based on-board accounts upon ReloadAccount operation
-             * @remark  [17575-1:2016], Clause 6.6.2 accountUpdate
+             * @remark  [17575-1:2016], Clause 7.7.3 accountUpdate
              */
-            testcase TC_BEF_FE_BV_30() runs on EutComp system TestAdapter 
+            testcase TC_BEF_FE_BV_30() runs on EutComp system TestAdapter
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
-                
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -2315,7 +2449,7 @@ module Charging_TCs {
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, distance_THR_UNIT);
                 // Predefined value for reload is less than THR/2, but greater than 0
-                f_userActions(cmdSet, reloadOldDistance_THR);
+                f_userActions(cmdSet, newDistanceLimit_ACC);
                 // Front End shall not change its mileage during the whole test purpose
                 // No authentication is required
                 // Preamble done
@@ -2325,16 +2459,16 @@ module Charging_TCs {
                 t_ac.start;
                 // Step1: Wait for ChargeReport message with accountStatus==ok
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence an
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with reloadOldCreditAmount set to true
-                        label Step4;
-                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldDistanceLimit(chargeReport1.chargeReportCounter + 1, true));
-                        // Step5: Wait for ChargeReport message with accountStatus==ok
+
+                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldDistanceLimit(chargeReport1.chargeReportCounter, true));
+                        // Step5: Wait for ChargeReport message with no specified accountStatus value
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking pre
                                 // Stop timer
                                 t_ac.stop;
                                 // Step8: Validate transitions
@@ -2343,37 +2477,36 @@ module Charging_TCs {
                                     setverdict(fail);
                                     // No Step9
                                 } else {
-                                    // Step8: pass
-                                    // Step9: Check accountS2
-                                    if (match(chargeReport2.accountStatus, AccountStatus_ok_)) { // Step9: IF (accountS2 equals to 0) 
-                                        // Step9: pass
-                                        setverdict(pass);
-                                    } else {// Step9: accountS2 not equals to 0
-                                        // Assign value of accountS2 to accountS1
-                                        chargeReport1.accountStatus := chargeReport2.accountStatus;
-                                        // Step9: goto Step4
-                                        goto Step4;
-                                    }
+                                    setverdict(pass);
+                                    // Step9: Send ChargeReportResponse
+                                    pco.send(m_chargeReportResponse_chargeReportCounter(chargeReport2.chargeReportCounter));
+
                                 }
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_30
-
             /**
              * @desc    TC_BEF_FE_BV_31: Verify that DUT updates Account Status for event based on-board accounts upon ReloadAccount operation
-             * @remark  [17575-1:2016], Clause 6.6.2 accountUpdate
+             * @remark  [17575-1:2016], Clause 7.7.3 accountUpdate
              */
-            testcase TC_BEF_FE_BV_31() runs on EutComp system TestAdapter 
+            testcase TC_BEF_FE_BV_31() runs on EutComp system TestAdapter
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
-                
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -2382,7 +2515,7 @@ module Charging_TCs {
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, event_THR);
                 // Predefined value for reload is less than THR/2, but greater than 0
-                f_userActions(cmdSet, reloadOldEvent_THR);
+                f_userActions(cmdSet, newEventLimit_ACC);
                 // Front End is initialized and has a toll context activated
                 // No accountable event happens during whole test purpos
                 // No authentication is required
@@ -2391,18 +2524,17 @@ module Charging_TCs {
 
                 // Test body start
                 t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
+                // Step1: Wait for ChargeReport message, no specific accountStatus
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence an
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with reloadOldCreditAmount set to true
-                        label Step4;
-                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldEventLimit(chargeReport1.chargeReportCounter + 1, true));
+                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldEventLimit(chargeReport1.chargeReportCounter, true));
                         // Step5: Wait for ChargeReport message with accountStatus==ok
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus:?)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking pre
                                 // Stop timer
                                 t_ac.stop;
                                 // Step8: Validate transitions
@@ -2411,39 +2543,37 @@ module Charging_TCs {
                                     setverdict(fail);
                                     // No Step9
                                 } else {
-                                    // Step8: pass
-                                    // Step9: Check accountS2
-                                    if (match(chargeReport2.accountStatus, AccountStatus_ok_)) { // Step9: IF (accountS2 equals to 0) 
-                                        // Step9: pass
-                                        setverdict(pass);
-                                    } else {// Step9: accountS2 not equals to 0
-                                        // Assign value of accountS2 to accountS1
-                                        chargeReport1.accountStatus := chargeReport2.accountStatus;
-                                        // Step9: goto Step4
-                                        goto Step4;
-                                    }
+                                    setverdict(pass);
+                                    // Step9: Send the ChargeReportResponse
+                                    pco.send(m_chargeReportResponse_chargeReportCounter(chargeReport2.chargeReportCounter));
+
                                 }
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_31
-
             /**
              * @desc    TC_BEF_FE_BV_32: Verify that DUT does not update Account Status for credit based on-board accounts upon ReloadAccount operation with ‘false’ value
-             * @remark  [17575-1:2016], Clause 6.6.2 accountUpdate
+             * @remark  [17575-1:2016], Clause 7.7.3 accountUpdate
              */
-            testcase TC_BEF_FE_BV_32() runs on EutComp system TestAdapter 
+            testcase TC_BEF_FE_BV_32() runs on EutComp system TestAdapter
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
-                timer t_runningDuration := PX_TEST_BODY_DURATION; // Used to repeat test body sequence during 30.0 seconds
-                var template AccountStatus v_accountStatus := ?;
-                
+                var template AccountStatus v_accountStatus := 1; // accountStatus = low (1)
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -2452,7 +2582,7 @@ module Charging_TCs {
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, paymentFee_THR_UNIT);
                 // Predefined value for reload P is less than THR/2, but greater than 0
-                f_userActions(cmdSet, reloadOldAccount_THR);
+                f_userActions(cmdSet, newCreditLimit_ACC);
                 // Front End credit based on-board account has U units
                 // Front End is initialized and has a toll context activated
                 // Front End shall not utilize any credits during the whole test purpose
@@ -2461,59 +2591,61 @@ module Charging_TCs {
                 f_userActions(cmdSet, contract1);
 
                 // Test body start
-                t_runningDuration.start;
+
                 t_ac.start;
                 // Step1: Wait for ChargeReport message with accountStatus==ok
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(v_accountStatus)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(v_accountStatus)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence an
                         // Stop timer
                         t_ac.stop;
                         // Step4: Send ChargeReportResponse with reloadOldCreditAmount set to true
-                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldCreditAmout(chargeReport1.chargeReportCounter + 1, false));
+                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldCreditAmout(chargeReport1.chargeReportCounter, false));
                         // Step5: Wait for ChargeReport message with accountStatus==ok
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(chargeReport1.accountStatus)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(v_accountStatus)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking pre
                                 // Stop timer
                                 t_ac.stop;
-                                // Step9: Assign value of accountS2 to accountS1
-                                v_accountStatus := chargeReport2.accountStatus;
-                                t_ac.start;
-                                repeat;
+                                setverdict(pass);
+                                                        //Step9: send ChargeReportResponse with ChargeReportCounter
+                                pco.send(m_chargeReportResponse_chargeReportCounter(chargeReport2.chargeReportCounter));
+
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
-                    [] t_runningDuration.timeout {
-                        // Step9: ChargeReport received Roundup[(THR-U)/P) times and accountStatus change did not occurred
-                        setverdict(pass);
-                    }
+
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_32
-
             /**
              * @desc    TC_BEF_FE_BV_33: Verify that DUT does not update Account Status for distance based on-board accounts upon ReloadAccount operation with ‘false’ value
-             * @remark  [17575-1:2016], Clause 6.6.2 accountUpdate
+             * @remark  [17575-1:2016], Clause 7.7.3 accountUpdate
              */
-            testcase TC_BEF_FE_BV_33() runs on EutComp system TestAdapter 
+            testcase TC_BEF_FE_BV_33() runs on EutComp system TestAdapter
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
-                timer t_runningDuration := PX_TEST_BODY_DURATION; // Used to repeat test body sequence during 30.0 seconds
-                var template AccountStatus v_accountStatus := ?;
-                
+                var template AccountStatus v_accountStatus_low := 1;
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
-                // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
+                // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter or mileage to be present
                 f_SendContextData(m_ContextData_accountStatus_chargeReportCounter_mileage_requested);
                 // Front End implementation supports distance based on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, distance_THR_UNIT);
-                // Predefined value for reload P is less than THR/2, but greater than 0
-                f_userActions(cmdSet, reloadOldDistance_THR);
+                // Account limit is set to a value, less than threshold
+                f_userActions(cmdSet, newDistanceLimit_ACC);
                 // Front End credit based on-board account has U units
                 // Front End is initialized and has a toll context activated
                 // No accountable event happens during whole test purpos
@@ -2522,50 +2654,48 @@ module Charging_TCs {
                 f_userActions(cmdSet, contract1);
 
                 // Test body start
-                t_runningDuration.start;
                 t_ac.start;
                 // Step1: Wait for ChargeReport message with accountStatus==ok
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(AccountStatus_ok_)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(v_accountStatus_low)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presenc
                         // Stop timer
                         t_ac.stop;
-                        // Step4: Send ChargeReportResponse with reloadOldCreditAmount set to true
-                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldDistanceLimit(chargeReport1.chargeReportCounter + 1, false));
-                        // Step5: Wait for ChargeReport message with accountStatus==ok
+                        // Step4: Send ChargeReportResponse with reloadOldDistanceLimit set to false
+                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldDistanceLimit(chargeReport1.chargeReportCounter, false));
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(chargeReport1.accountStatus)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            // Step5: wait for ChargeReport message with accountStatus = low
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(chargeReport1.accountStatus)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport
                                 // Stop timer
                                 t_ac.stop;
-                                // Step9: Assign value of accountS2 to accountS1
-                                v_accountStatus := chargeReport2.accountStatus;
-                                t_ac.start;
-                                repeat;
+                                //Step9: send ChargeReportResponse with ChargeReportCounter
+                                pco.send(m_chargeReportResponse_chargeReportCounter(chargeReport2.chargeReportCounter));
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
-                    [] t_runningDuration.timeout {
-                        // Step9: ChargeReport received Roundup[(THR-U)/P) times and accountStatus change did not occurred)
-                        setverdict(pass);
-                    }
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_33
-
             /**
              * @desc    TC_BEF_FE_BV_34: Verify that DUT does not update Account Status for event based on-board accounts upon ReloadAccount operation with ‘false’ value
-             * @remark  [17575-1:2016], Clause 6.6.2 accountUpdate
+             * @remark  [17575-1:2016], Clause 7.7.3 reloadAccount
              */
-            testcase TC_BEF_FE_BV_34() runs on EutComp system TestAdapter 
+            testcase TC_BEF_FE_BV_34() runs on EutComp system TestAdapter
             {
                 var ChargeReport chargeReport1 := null; // Used to retrieve accountS1 for transition checks
                 var ChargeReport chargeReport2 := null; // Used to retrieve accountS2 for transition checks
-                timer t_runningDuration := PX_TEST_BODY_DURATION; // Used to repeat test body sequence during 30.0 seconds
-                var template AccountStatus v_accountStatus := ?;
-                
+                var template AccountStatus v_accountStatus := 1; // Expecting accountStatus = low (1)
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Front End received already Context Data applicable for on-board accounts and with Charge Report Configuration requesting accountStatus, chargeReportCounter and mileage to be present
@@ -2573,8 +2703,8 @@ module Charging_TCs {
                 // Front End implementation supports distance based on-board account
                 // Threshold for on-board account is set to THR
                 f_userActions(cmdSet, event_THR);
-                // Predefined value for reload P is less than THR/2, but greater than 0
-                f_userActions(cmdSet, reloadOldEvent_THR);
+                // Predefined value for reload P (setAccount) is less than THR/2, but greater than 0
+                f_userActions(cmdSet, newEventLimit_ACC);
                 // Front End credit based on-board account has U units
                 // Front End is initialized and has a toll context activated
                 // No accountable event happens during whole test purpos
@@ -2583,41 +2713,35 @@ module Charging_TCs {
                 f_userActions(cmdSet, contract1);
 
                 // Test body start
-                t_runningDuration.start;
+
                 t_ac.start;
-                // Step1: Wait for ChargeReport message with accountStatus==ok
+                // Step1: Wait for ChargeReport message with accountStatus==low (1)
                 alt {
-                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(v_accountStatus)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                    [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(v_accountStatus)) -> value chargeReport1 { // Step2: Verify structure of sent ChargeReport, taking presence an
                         // Stop timer
                         t_ac.stop;
-                        // Step4: Send ChargeReportResponse with reloadOldCreditAmount set to true
-                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldEventLimit(chargeReport1.chargeReportCounter + 1, false));
+                        // Step4: Send ChargeReportResponse with reloadOldCreditAmount set to false
+                        pco.send(m_chargeReportResponse_chargeReportCounter_reloadAccount_reloadOldEventLimit(chargeReport1.chargeReportCounter, false));
                         // Step5: Wait for ChargeReport message with accountStatus==ok
                         t_ac.start;
                         alt {
-                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(chargeReport1.accountStatus)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.6
+                            [] pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage(chargeReport1.accountStatus)) -> value chargeReport2 { // Step6: Verify structure of sent ChargeReport
                                 // Stop timer
-                                t_ac.stop;
-                                // Step9: Assign value of accountS2 to accountS1
-                                v_accountStatus := chargeReport2.accountStatus;
-                                t_ac.start;
-                                repeat;
+                               t_ac.stop;
+                               pco.send(m_chargeReportResponse_chargeReportCounter(chargeReport2.chargeReportCounter));
+
                             } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
                         }
                     } // pco.receive(mw_chargeReport_tableC1_accountStatus_chargeReportCounter_mileage)
-                    [] t_runningDuration.timeout {
-                        // Step9: ChargeReport received Roundup[(THR-U)/P) times and accountStatus change did not occurred
-                        setverdict(pass);
-                    }
+
                 } // End of alt statement
                 // Test body done
-    
+
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_BEF_FE_BV_34
-
-       } // End of group Valid_Behaviour
-
+            } // End of group Valid_Behaviour
+                
         /**
          * @desc    No test purposes for invalid behaviour are specified (BI), as [17575-1:2016] does not specify any invalid behaviour of Front End
          * @remark  0 TCs
@@ -2625,9 +2749,9 @@ module Charging_TCs {
         group Invalid_Behaviour {
         } // End of group Invalid_Behaviour
     } // End of group Back_End_Feedback
-
+        
     /**
-     * @desc    These Test Purposes apply to  Communication services support as claimed in [17575-1:2016], Clause 1, and data elements in Charge Report Response as claimed in [17575-1:2016], Clause B.2/ChargeReportResponse, amd clause B.3.2
+     * @desc    These Test Purposes apply to  Communication services support as claimed in [17575-1:2016], Clause 1, and data elements in Charge Report Response as claimed in [17575-1:2016], Clause B.2/ChargeRep
      * @remark  2 TCs
      */
     group Charge_Report_Response {
@@ -2638,11 +2762,12 @@ module Charging_TCs {
          * - to verify structure of sent ChargeReportResponse,and allowed values of all data elements in Charge Report Response
          */
         group Valid_Behaviour {
+// ---- TC TO BE REMOVED ------
 //            /**
 //             * @desc    TC_CRR_BE_BV_01: Verify the usage of communication services
 //             * @remark  [17575-1:2016]
 //             */
-//            testcase TC_CRR_BE_BV_01() runs on EutComp system TestAdapter 
+//            testcase TC_CRR_BE_BV_01() runs on EutComp system TestAdapter
 //            {
 //                // Preamble
 //                f_Charging_Preambule();
@@ -2661,7 +2786,7 @@ module Charging_TCs {
 //                        pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
 //                        // Step3: Check the Communication System [TS 17575-2]
 //                        f_userActions(cmdCheck, checkCommunicationSystem);
-//                        
+//
 //                        // Step4: Set verdict pass
 //                        setverdict(pass);
 //                    } // mw_chargeReport_any
@@ -2671,17 +2796,27 @@ module Charging_TCs {
 //                // Postamble
 //                f_Charging_Postambule();
 //            } // End of TC TC_CRR_BE_BV_01
-//
-            /**
-             * @desc    TC_CRR_BE_BV_02: Verify that DUT confirms reception of Charge Report
-             * @remark  [17575-1:2016], Clause 5.3 Charge report response
+              /**
+             * @desc    TC_CRR_BE_BV_02: Verify that DUT responds to every recevied Charge Report
+             * @remark  [17575-1:2016], Clause 6.4 Charge report response
              */
-            testcase TC_CRR_BE_BV_02() runs on EutComp system TestAdapter 
+            testcase TC_CRR_BE_BV_02() runs on EutComp system TestAdapter
             {
+
+                // Local variables
+
+                // Test control
+                if (PICS_SECURED_MODE) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+
                 // Preamble
                 f_Charging_Preambule();
                 // Back End is initialized and can receive Charge Report
-                f_SendContextData(m_contextData_default);
+                 f_SendContextData(m_contextData_default);
+                //
                 // Preamble done
 
                 // Test body start
@@ -2692,12 +2827,12 @@ module Charging_TCs {
                         // Stop timer
                         t_ac.stop;
                         // Step2: Send ChargeReportResponse
-                        pco.send(m_chargeReportResponse_chargeReportCounter(PX_CHARGE_REPORT_COUNTER_RESPONSE));
+                        pco.send(m_chargeReportResponse_default);
                         // Step3: ChargeReportResponse not received, see default altsteps
-                        
-                        // Step4: Verify structure of sent ChargeReportResponse, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to Table C.7
+
+                        // Step4: Verify structure of sent ChargeReportResponse, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to
                         f_userActions(cmdCheck, checkChargeReportResponse);
-                        
+
                         // Step5: Set verdict pass
                         setverdict(pass);
                     } // mw_chargeReport_any
@@ -2707,9 +2842,61 @@ module Charging_TCs {
                 // Postamble
                 f_Charging_Postambule();
             } // End of TC TC_CRR_BE_BV_02
+            
+            /**
+             * @desc    TC_CRR_BE_BV_03: Verify that DUT responds to every recevied authenticated Charge Report
+             * @remark  [17575-1:2016], Clause 7.2.2 ChargReportResponse and 7.4.2 AuthenticatedChargeReportResponse
+             */
+            testcase TC_CRR_BE_BV_03() runs on EutComp system TestAdapter {
+                
+                // Local variables
+                var ChargeReport v_chargeReport;
+                var boolean v_result;
+                
+                // Test control
+                if (not(PICS_SECURED_MODE == true)) {
+                    log("*** " & testcasename() & ": not PICS_SECURED_MODE required for executing the TC ***");
+                    setverdict(inconc);
+                    stop;
+                }
+                
+                // Preamble
+                f_Charging_Preambule();
+                // Back End is initialized and can receive Charge Report
+                // f_SendContextData(m_contextData_default);
+                //
+                // Preamble done
 
+                // Test body start
+                t_ac.start;
+                // Step1: Wait for ChargeReport message
+                alt {
+                    [] a_pco_recv_iso17575_3Adu_chargeReport(mw_chargeReport_any, v_chargeReport, v_result) {
+                        // Stop timer
+                        t_ac.stop;
+                        // check the authenticated version has been received
+                        if (v_result == false){
+                          setverdict(fail);
+                        }
+                        // Step2: Send ChargeReportResponse
+                        pco.send(m_chargeReportResponse_default);
+                        // Step3: ChargeReportResponse not received, see default altsteps
+
+                        // Step4: Verify structure of sent ChargeReportResponse, taking presence and absence of optional data elements into account and verify allowed values of present data elements according to
+                        f_userActions(cmdCheck, checkChargeReportResponse);
+
+                        // Step5: Set verdict pass
+                        setverdict(pass);
+                    } // authenticated chargeReport
+
+                } // End of alt statement
+                // Test body done
+
+                // Postamble
+                f_Charging_Postambule();
+            } // End of TC TC_CRR_BE_BV_03
         } // End of group Valid_Behaviour
-
+            
         /**
          * @desc    No test purposes for invalid behaviour are specified (BI), as [17575-1:2016] does not specify any invalid behaviour of Back End
          * @remark  0 TCs
@@ -2718,3 +2905,4 @@ module Charging_TCs {
         } // End of group Invalid_Behaviour
     } // End of group Charge_Report_Response
 } // End of module Charging_TCs
+           
