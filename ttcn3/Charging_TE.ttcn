@@ -164,87 +164,87 @@ module Charging_TE {
             execute(TC_BEF_FE_BV_08(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_09: Verify that DUT sets Account Status to ‘NEGATIVE’ for credit based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_09(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_10: Verify that DUT sets Account Status to ‘OK’ for distance based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_10(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_11: Verify that DUT sets Account Status to ‘LOW’ for distance based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_11(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_12: Verify that DUT sets Account Status to ‘EMPTY’ for distance based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_12(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_13: Verify that DUT sets Account Status to ‘NEGATIVE’ for distance based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_13(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_14: Verify that DUT sets Account Status to ‘OK’ for time based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_14(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_15: Verify that DUT sets Account Status to ‘LOW’ for time based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_15(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_16: Verify that DUT sets Account Status to ‘EMPTY’ for time based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_16(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_17: Verify that DUT sets Account Status to ‘NEGATIVE’ for time based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_17(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_18: Verify that DUT sets Account Status to ‘OK’ for duration based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_18(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_19: Verify that DUT sets Account Status to ‘LOW’ for duration based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_19(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_20: Verify that DUT sets Account Status to ‘EMPTY’ for duration based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_20(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_21: Verify that DUT sets Account Status to ‘NEGATIVE’ for duration based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_21(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_22: Verify that DUT sets Account Status to ‘OK’ for event based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_22(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_23: Verify that DUT sets Account Status to ‘LOW’ for event based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_23(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_24: Verify that DUT sets Account Status to ‘EMPTY’ for event based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_24(), PX_GUARD);
             /**
              * @desc    TC_BEF_FE_BV_25: Verify that DUT sets Account Status to ‘NEGATIVE’ for event based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
             execute(TC_BEF_FE_BV_25(), PX_GUARD);
             /**

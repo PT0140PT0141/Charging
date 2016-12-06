@@ -1227,10 +1227,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_09: Verify that DUT sets Account Status to ‘NEGATIVE’ for credit based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_09() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_09() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1276,10 +1275,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_10: Verify that DUT sets Account Status to ‘OK’ for distance based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_10() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_10() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1325,10 +1323,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_11: Verify that DUT sets Account Status to ‘LOW’ for distance based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_11() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_11() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1374,10 +1371,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_12: Verify that DUT sets Account Status to ‘EMPTY’ for distance based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_12() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_12() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1423,10 +1419,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_13: Verify that DUT sets Account Status to ‘NEGATIVE’ for distance based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_13() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_13() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1472,10 +1467,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_14: Verify that DUT sets Account Status to ‘OK’ for time based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_14() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_14() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1520,10 +1514,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_15: Verify that DUT sets Account Status to ‘LOW’ for time based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_15() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_15() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1568,10 +1561,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_16: Verify that DUT sets Account Status to ‘EMPTY’ for time based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_16() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_16() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1616,10 +1608,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_17: Verify that DUT sets Account Status to ‘NEGATIVE’ for time based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_17() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_17() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1664,10 +1655,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_18: Verify that DUT sets Account Status to ‘OK’ for duration based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_18() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_18() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1713,10 +1703,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_19: Verify that DUT sets Account Status to ‘LOW’ for duration based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_19() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_19() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1762,10 +1751,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_20: Verify that DUT sets Account Status to ‘EMPTY’ for duration based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_20() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_20() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1811,10 +1799,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_21: Verify that DUT sets Account Status to ‘NEGATIVE’ for duration based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_21() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_21() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1860,10 +1847,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_22: Verify that DUT sets Account Status to ‘OK’ for event based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_22() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_22() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1908,10 +1894,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_23: Verify that DUT sets Account Status to ‘LOW’ for event based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_23() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_23() runs on EutComp system TestAdapter {
                  var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -1956,10 +1941,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_24: Verify that DUT sets Account Status to ‘EMPTY’ for event based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_24() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_24() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
@@ -2004,10 +1988,9 @@ module Charging_TCs {
 
             /**
              * @desc    TC_BEF_FE_BV_25: Verify that DUT sets Account Status to ‘NEGATIVE’ for event based on-board accounts
-             * @remark  [17575-1:2016], Clause 6.6.1 accountStatus
+             * @remark  [17575-1:2016], Clause 7.7.1 accountStatus
              */
-            testcase TC_BEF_FE_BV_25() runs on EutComp system TestAdapter 
-            {
+            testcase TC_BEF_FE_BV_25() runs on EutComp system TestAdapter {
                 var ChargeReport v_chargeReport := null; // Variable used to store the received message
                 
                 // Preamble
