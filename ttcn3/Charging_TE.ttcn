@@ -306,10 +306,15 @@ module Charging_TE {
 //             */
 //            execute(TC_CRR_BE_BV_01(), PX_GUARD);
             /**
-             * @desc    TC_CRR_BE_BV_02: Verify that DUT confirms reception of Charge Report
-             * @remark  [17575-1:2016], Clause 5.3 Charge report response
+             * @desc    TC_CRR_BE_BV_02: Verify that DUT responds to every recevied Charge Report
+             * @remark  [17575-1:2016], Clause 6.4 Charge report response
              */
             execute(TC_CRR_BE_BV_02(), PX_GUARD);
-
+            /**
+             * @desc    TC_CRR_BE_BV_03: Verify that DUT responds to every recevied authenticated Charge Report
+             * @remark  [17575-1:2016], Clause 7.2.2 ChargReportResponse and 7.4.2 AuthenticatedChargeReportResponse
+             */
+            execute(TC_CRR_BE_BV_03(), PX_GUARD);
+            
     } // End of control block
 } // End of module Charging_TE
