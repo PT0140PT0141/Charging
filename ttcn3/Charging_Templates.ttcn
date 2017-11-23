@@ -24,9 +24,9 @@ module Charging_Templates {
      * @desc    TTCN-3 does not support ASN.1 parameterization (ETSI ES 201 873-7 V4.5.1 Clause 10)
      *          Common_Parameterised_Asn1_Data TTCN-3 module is a workaround
      */
-    import from Common_Parameterised_Asn1_Data all;
-    import from Common_Templates all;
-    import from Common_Pixits all;
+    import from LibEfc_Common_Parameterised_Asn1_Data all;
+    import from LibEfc_Common_Templates all;
+    import from LibEfc_Common_Pixits all;
     
     // Charging
     import from Charging_Pixits all;
@@ -35,7 +35,7 @@ module Charging_Templates {
     /**
      * @desc    Common templates
      */
-    import from Common_Templates all;
+    import from LibEfc_Common_Templates all;
 
     group Charging_Contents {
         /**

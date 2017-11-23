@@ -8,7 +8,7 @@
  */
 module Charging_TE {
     import from Charging_TCs all;
-    import from Common_Pixits all;
+    import from LibEfc_Common_Pixits all;
 
     control {
         /**
